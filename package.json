@@ -1,12 +1,12 @@
 {
   "name": "may-it-be",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies":{
+  "dependencies": {
     "be-active": "0.0.9",
     "be-ferried": "0.0.19",
     "be-intersectional": "0.0.7",
