@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "be-active": "0.0.9",
+    "be-definitive": "0.0.21",
     "be-ferried": "0.0.19",
     "be-intersectional": "0.0.7",
     "be-loaded": "0.0.25",

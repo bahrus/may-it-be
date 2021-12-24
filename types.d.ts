@@ -1,4 +1,5 @@
 import {BeActiveVirtualProps} from 'be-active/types';
+import { BeDefinitiveVirtualProps } from 'be-definitive/types';
 import {BeFerriedVirtualProps} from 'be-ferried/types';
 import { BeIntersectionalVirtualProps } from 'be-intersectional/types';
 import { BeMetamorphicVirtualProps } from 'be-metamorphic/types';
@@ -10,6 +11,7 @@ import { BeLoadedVirtualProps } from 'be-loaded/types';
 
 export interface MayItBe<Self = any, Props = any, Actions = any>{
     beActive?: BeActiveVirtualProps,
+    beDefinitive?: BeDefinitiveVirtualProps<Props, Actions>,
     beFerried?: BeFerriedVirtualProps,
     beIntersectional?: INotifyMap<Self, Props, Actions>,
     beLoaded?: BeLoadedVirtualProps,
