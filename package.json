@@ -1,12 +1,24 @@
 {
   "name": "may-it-be",
   "version": "0.0.6",
-  "description": "",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements"
+  ],
+  "description": "Tools that help use a family of web component decorators starting wth be-",
   "type": "module",
   "main": "index.js",
   "module": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "types": "types.d.ts",
+  "files":["*.*"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package-check": "package-check"
   },
   "dependencies": {
     "be-active": "0.0.9",
@@ -19,6 +31,9 @@
     "be-observant": "0.0.69",
     "be-switched": "0.0.46",
     "be-transformative": "0.0.20"
+  },
+  "devDependencies": {
+    "@skypack/package-check": "0.2.2"
   },
   "repository": {
     "type": "git",
