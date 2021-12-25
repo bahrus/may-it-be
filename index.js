@@ -37,9 +37,10 @@ export function substrBetween(str, start, end) {
     const iPos = str.indexOf(end, start_pos + start.length);
     return iPos === -1 ? str.substring(start_pos + start.length) : str.substring(start_pos + start.length, iPos);
 }
-export function define(html) {
+export function define(html, dependencies = []) {
     const js = `import('be-definitive/be-definitive.js');
 import('be-active/be-active.js');
+${dependencies.map(d => `import('${d}');`).join('\n')}
 document.body.insertAdjacentHTML('beforeend', \`${html}\`);`;
     console.log(js);
 }
