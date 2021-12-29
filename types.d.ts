@@ -20,3 +20,11 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beSwitched?: BeSwitchedVirtualProps,
     beTransformative?: any,
 }
+
+export interface DefineArgs{
+    innerHTML: string,
+    beDefinitiveProps: BeDefinitiveVirtualProps,
+    encodeAndWrite: (html: string) => void,
+    mode: '-js' | '-html',
+    dependencies?: string[],
+}

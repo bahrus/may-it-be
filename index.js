@@ -37,10 +37,45 @@ export function substrBetween(str, start, end) {
     const iPos = str.indexOf(end, start_pos + start.length);
     return iPos === -1 ? str.substring(start_pos + start.length) : str.substring(start_pos + start.length, iPos);
 }
-export function define(html, encodeAndWrite, dependencies = []) {
-    const js = `import('be-definitive/be-definitive.js');
+export function define({ innerHTML, encodeAndWrite, mode, dependencies, beDefinitiveProps }) {
+    if (dependencies === undefined)
+        dependencies = [];
+    switch (mode) {
+        case '-js':
+            {
+                const mainTemplate = html `<template ${{
+                    beDefinitive: beDefinitiveProps
+                }}>${innerHTML}</template>`;
+                const js = `import('be-definitive/be-definitive.js');
 import('be-active/be-active.js');
 ${dependencies.map(d => `import('${d}');`).join('\n')}
-document.body.insertAdjacentHTML('beforeend', \`${html}\`);`;
-    encodeAndWrite(js);
+document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
+                encodeAndWrite(js);
+            }
+            break;
+        case '-html':
+            {
+                const h = html `
+<script type=module>
+    if(customElements.get('be-active') === undefined){
+        import('be-active/be-active.js').catch(err => {
+            import('https://esm.run/be-active/be-active.js');
+        });
+    }
+</script>
+<template be-active>
+    <script id="be-definitive/be-definitive.js"></script>
+    ${dependencies.map(d => html `<script id="${d}"></script>`).join('\n')}
+</template>
+<${beDefinitiveProps.config.tagName} ${{
+                    beDefinitive: beDefinitiveProps
+                }}>
+    <template shadowroot="open">
+        ${innerHTML}
+    </template>
+</${beDefinitiveProps.config.tagName}>;
+`;
+            }
+            break;
+    }
 }
