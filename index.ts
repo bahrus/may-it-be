@@ -65,14 +65,15 @@ encodeAndWrite(js);
         });
     }
 </script>
-<template be-active>
-    <script id="be-definitive/be-definitive.js"></script>
-    ${dependencies.map(d => html`<script id="${d}"></script>`).join('\n')}
-</template>
+
 <${beDefinitiveProps.config.tagName} ${{
     beDefinitive: beDefinitiveProps
 }}>
     <template shadowroot="open">
+        <template be-active>
+            <script id="be-definitive/be-definitive.js"></script>
+            ${dependencies.map(d => html`<script id="${d}"></script>`).join('\n')}
+        </template>
         ${innerHTML}
     </template>
 </${beDefinitiveProps.config.tagName}>;
