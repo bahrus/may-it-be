@@ -8,6 +8,7 @@ import { IObserveMap } from 'be-observant/types';
 import { BeSwitchedVirtualProps } from 'be-switched/types';
 import { BeTransformativeVirtualProps } from 'be-transformative/types';
 import { BeLoadedVirtualProps } from 'be-loaded/types';
+export { BeDefinitiveVirtualProps} from 'be-definitive/types';
 
 export interface MayItBe<Self = any, Props = any, Actions = any>{
     beActive?: BeActiveVirtualProps,

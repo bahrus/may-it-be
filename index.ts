@@ -76,7 +76,8 @@ encodeAndWrite(js);
         ${innerHTML}
     </template>
 </${beDefinitiveProps.config.tagName}>;
-`
+`;
+            encodeAndWrite(h);
         }
         break;
     }

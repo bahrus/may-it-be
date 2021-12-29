@@ -75,6 +75,7 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
     </template>
 </${beDefinitiveProps.config.tagName}>;
 `;
+                encodeAndWrite(h);
             }
             break;
     }
