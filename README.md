@@ -1,5 +1,3 @@
-# may-it-be [WIP]
+# may-it-be
 
-may-it-be provides tools that help use a family of web component decorators starting wth be-.  Those decorators can extend the behavior of native, built-in components, as well as of other custom elements. 
-
-It is also planned that this repo will be used to provide a unified documentation side for this HTML framework.
+may-it-be provides "build" tooling for declarative web components, particularly those that are built on top of the family of [be-* decorators/behaviors](https://github.com/bahrus?tab=repositories&q=be-&type=&language=&sort=).
