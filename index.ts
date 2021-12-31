@@ -66,10 +66,10 @@ encodeAndWrite(js);
     }
 </script>
 
-<${beDefinitiveProps.config.tagName} -mibs ${{
+<${beDefinitiveProps.config.tagName} - ${{
     beDefinitive: beDefinitiveProps
 }}>
-    <may-it-be></may-it-be>
+    <!---->
     <template shadowroot="open">
         <template be-active>
             <script id="be-definitive/be-definitive.js"></script>
