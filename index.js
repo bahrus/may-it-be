@@ -64,9 +64,10 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
     }
 </script>
 
-<${beDefinitiveProps.config.tagName} ${{
+<${beDefinitiveProps.config.tagName} -attribs ${{
                     beDefinitive: beDefinitiveProps
                 }}>
+    <may-it-be></may-it-be>
     <template shadowroot="open">
         <template be-active>
             <script id="be-definitive/be-definitive.js"></script>
