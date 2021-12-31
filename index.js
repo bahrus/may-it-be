@@ -74,7 +74,7 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
         </template>
         ${innerHTML}
     </template>
-</${beDefinitiveProps.config.tagName}>;
+</${beDefinitiveProps.config.tagName}>
 `;
                 encodeAndWrite(h);
             }
