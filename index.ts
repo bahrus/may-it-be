@@ -66,7 +66,7 @@ encodeAndWrite(js);
     }
 </script>
 
-<${beDefinitiveProps.config.tagName} -attribs ${{
+<${beDefinitiveProps.config.tagName} -mibs ${{
     beDefinitive: beDefinitiveProps
 }}>
     <may-it-be></may-it-be>
