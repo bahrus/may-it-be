@@ -64,7 +64,7 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
     }
 </script>
 
-<${beDefinitiveProps.config.tagName} tailb ${{
+<${beDefinitiveProps.config.tagName} t-a-i-l-b ${{
                     beDefinitive: beDefinitiveProps
                 }}>
     <!---->
