@@ -56,14 +56,6 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
         case '-html':
             {
                 const h = html `
-<script type=module>
-    if(customElements.get('be-active') === undefined){
-        import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active/be-active.js');
-        });
-    }
-</script>
-
 <${beDefinitiveProps.config.tagName} t-a-i-l-b ${{
                     beDefinitive: beDefinitiveProps
                 }}>
@@ -76,8 +68,20 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
         ${innerHTML}
     </template>
 </${beDefinitiveProps.config.tagName}>
+<script type=module>
+    if(customElements.get('be-active') === undefined){
+        import('be-active/be-active.js').catch(err => {
+            import('https://esm.run/be-active/be-active.js');
+        });
+    }
+</script>
 `;
                 encodeAndWrite(h);
+            }
+            break;
+        case '-dfn':
+            {
+                encodeAndWrite(JSON.stringify(beDefinitiveProps));
             }
             break;
     }

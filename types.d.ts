@@ -26,6 +26,6 @@ export interface DefineArgs{
     innerHTML: string,
     beDefinitiveProps: BeDefinitiveVirtualProps,
     encodeAndWrite: (html: string) => void,
-    mode: '-js' | '-html',
+    mode: '-js' | '-html' | '-dfn',
     dependencies?: string[],
 }
