@@ -14,7 +14,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beActive?: BeActiveVirtualProps,
     beDefinitive?: BeDefinitiveVirtualProps<Props, Actions>,
     beFerried?: BeFerriedVirtualProps,
-    beIntersectional?: INotifyMap<Self, Props, Actions>,
+    beIntersectional?: BeIntersectionalVirtualProps,
     beLoaded?: BeLoadedVirtualProps,
     beNoticed?: INotifyMap<Self, Props, Actions>,
     beObservant?: IObserveMap<Self, Props, Actions>,
