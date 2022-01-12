@@ -29,3 +29,7 @@ export interface DefineArgs{
     mode: '-js' | '-html' | '-dfn',
     dependencies?: string[],
 }
+
+export interface Scaffold<TProps = any, TActions = TProps>{
+    
+}
