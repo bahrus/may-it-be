@@ -20,6 +20,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beObservant?: IObserveMap<Self, Props, Actions>,
     beSwitched?: BeSwitchedVirtualProps,
     beTransformative?: any,
+    scaffold?: Scaffold,
 }
 
 export interface DefineArgs{
@@ -31,18 +32,21 @@ export interface DefineArgs{
 }
 
 export interface Scaffold<TProps = any, TActions = TProps>{
-
+    
 }
 
-export interface PropPresentation{
+export interface IPresentationElement{
     name: string,
     description: string,
-    category: string,
+    category: string
+}
+
+export interface PropPresentation extends IPresentationElement{
     readOnly: boolean,
     editor: any,
 }
 
-export interface ActionPresentation{
+export interface ActionPresentation extends IPresentationElement{
     name: string,
     description: string,
     category: string
