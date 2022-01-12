@@ -9,6 +9,7 @@ import { BeSwitchedVirtualProps } from 'be-switched/types';
 import { BeTransformativeVirtualProps } from 'be-transformative/types';
 import { BeLoadedVirtualProps } from 'be-loaded/types';
 export { BeDefinitiveVirtualProps} from 'be-definitive/types';
+import { BaseScaffoldGenerator } from './BaseScaffold';
 
 export interface MayItBe<Self = any, Props = any, Actions = any>{
     beActive?: BeActiveVirtualProps,
@@ -20,7 +21,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beObservant?: IObserveMap<Self, Props, Actions>,
     beSwitched?: BeSwitchedVirtualProps,
     beTransformative?: any,
-    scaffold?: Scaffold,
+    scaffold?: BaseScaffoldGenerator,
 }
 
 export interface DefineArgs{
@@ -31,8 +32,9 @@ export interface DefineArgs{
     dependencies?: string[],
 }
 
-export interface Scaffold<TProps = any, TActions = TProps>{
-    
+export interface Scaffold<TProps = any, TEventHandlers = TProps>{
+    propPresentation: Partial<{[key in keyof TProps]: PropPresentation}>,
+    triggerPresentation: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
 }
 
 export interface IPresentationElement{
@@ -46,7 +48,7 @@ export interface PropPresentation extends IPresentationElement{
     editor: any,
 }
 
-export interface ActionPresentation extends IPresentationElement{
+export interface EventTriggerPresentation extends IPresentationElement{
     name: string,
     description: string,
     category: string
