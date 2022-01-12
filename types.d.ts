@@ -31,5 +31,19 @@ export interface DefineArgs{
 }
 
 export interface Scaffold<TProps = any, TActions = TProps>{
-    
+
+}
+
+export interface PropPresentation{
+    name: string,
+    description: string,
+    category: string,
+    readOnly: boolean,
+    editor: any,
+}
+
+export interface ActionPresentation{
+    name: string,
+    description: string,
+    category: string
 }
