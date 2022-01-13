@@ -2,12 +2,6 @@ import {DefineArgs} from './types';
 import {html} from './html';
 export {html} from './html';
 
-
-const ctlRe = /(?=[A-Z])/;
-export function camelToLisp(s: string) {
-    return s.split(ctlRe).join('-').toLowerCase();
-}
-
 export const doInitTransform = {
     cloneTemplate: {
         ifAllOf: ['mainTemplate'],

@@ -1,49 +1,52 @@
-import {DefineArgs, Scaffold, MayItBe as mib} from './types';
-import {html} from './html.js';
-export {html} from './html.js';
-
-export class BaseScaffoldGenerator{
-    constructor(public args: DefineArgs, public scaffold: Scaffold){}
-
-    render(){
-        const categories: {[key: string]: string[]} = {
+import { html } from './html.js';
+export { html } from './html.js';
+export class BaseScaffoldGenerator {
+    args;
+    scaffold;
+    constructor(args, scaffold) {
+        this.args = args;
+        this.scaffold = scaffold;
+    }
+    render() {
+        const categories = {
             unclassified: [],
         };
         const propPresentationMap = this.scaffold.propPresentationMap;
-        for(const propKey in this.scaffold.propPresentationMap){
-            const propPresentation = propPresentationMap[propKey]!;
-            if(propPresentation.category === undefined){
+        for (const propKey in this.scaffold.propPresentationMap) {
+            const propPresentation = propPresentationMap[propKey];
+            if (propPresentation.category === undefined) {
                 categories.unclassified.push(propKey);
-            }else{
-                if(categories[propPresentation.category] === undefined){
+            }
+            else {
+                if (categories[propPresentation.category] === undefined) {
                     categories[propPresentation.category] = [];
                 }
                 categories[propPresentation.category].push(propKey);
             }
         }
-        return html`<form>
+        return html `<form>
 ${Object.keys(categories).map(category => {
-    const categoryProps = categories[category];
-    return html`
+            const categoryProps = categories[category];
+            return html `
     <fieldset>
         <legend>${category}</legend>
         ${categoryProps.map(propKey => this.renderProp(propKey))}
     </fieldset>
     `;
-})}
+        })}
 </form>`;
     }
-
-    renderProp(propKey: string){
-        const propPresentation = this.scaffold.propPresentationMap[propKey]!;
+    renderProp(propKey) {
+        const propPresentation = this.scaffold.propPresentationMap[propKey];
         const propDefault = this.args.beDefinitiveProps.config.propDefaults?.[propKey];
         const propInfo = this.args.beDefinitiveProps.config.propInfo?.[propKey];
         let tagName = propPresentation.tagName || 'input';
         let type = 'text';
-        if(propPresentation.inputType !== undefined){
+        if (propPresentation.inputType !== undefined) {
             type = propPresentation.inputType;
-        }else{
-            switch(propInfo?.type){
+        }
+        else {
+            switch (propInfo?.type) {
                 case 'Boolean':
                     type = 'checkbox';
                     break;
@@ -54,15 +57,10 @@ ${Object.keys(categories).map(category => {
                     tagName = 'xtal-editor';
                     break;
             }
-            
         }
-        
         let value = propDefault;
-
-        return html`
-        <input itemprop=${propKey} type=${type} ${{
-
-        } as mib}>
+        return html `
+        <input itemprop=${propKey} type=${type} ${{}}>
         `;
     }
 }
