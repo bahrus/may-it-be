@@ -34,14 +34,16 @@ export interface DefineArgs{
 }
 
 export interface Scaffold<TProps = any, TEventHandlers = TProps>{
-    propPresentation: Partial<{[key in keyof TProps]: PropPresentation}>,
-    triggerPresentation: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
+    propPresentationMap: Partial<{[key in keyof TProps]: PropPresentation}>,
+    triggerPresentationMap: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
 }
 
 export interface IPresentationElement{
-    name: string,
-    description: string,
-    category: string
+    name?: string,
+    description?: string,
+    category?: string,
+    inputType?: string,
+    tagName?: string,
 }
 
 export interface PropPresentation extends IPresentationElement{
