@@ -23,17 +23,21 @@ export class BaseScaffoldGenerator{
                 categories[prop.category].push(propKey);
             }
         }
-        return html`
-<form>
-    ${Object.keys(categories).map(category => {
-        const categoryProps = categories[category];
-        return html`
-        <fieldset>
-            <legend>${category}</legend>
-        </fieldset>
-        `;
-    }).join('')}
-</form>
-        `;
+        return html`<form>
+${Object.keys(categories).map(category => {
+    const categoryProps = categories[category];
+    return html`
+    <fieldset>
+        <legend>${category}</legend>
+        ${categoryProps.map(propKey => {
+            const prop = props[propKey];
+            return html`
+            <input>
+            `;
+        })}
+    </fieldset>
+    `;
+})}
+</form>`;
     }
 }
