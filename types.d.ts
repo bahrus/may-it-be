@@ -21,7 +21,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beObservant?: IObserveMap<Self, Props, Actions>,
     beSwitched?: BeSwitchedVirtualProps,
     beTransformative?: any,
-    scaffold?: BaseScaffoldGenerator,
+    
 }
 
 export interface DefineArgs{
@@ -30,6 +30,7 @@ export interface DefineArgs{
     encodeAndWrite: (html: string) => void,
     mode: '-js' | '-html' | '-dfn',
     dependencies?: string[],
+    scaffoldGenerator?: BaseScaffoldGenerator,
 }
 
 export interface Scaffold<TProps = any, TEventHandlers = TProps>{
