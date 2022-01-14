@@ -64,7 +64,7 @@ ${Object.keys(categories).map(category => {
         if (isInput) {
             let type = 'text';
             let parseVal = 'string';
-            let vtf = 'value';
+            let vft = 'value';
             if (propPresentation?.inputType !== undefined) {
                 type = propPresentation.inputType;
             }
@@ -72,7 +72,7 @@ ${Object.keys(categories).map(category => {
                 switch (propInfo?.type) {
                     case 'Boolean':
                         type = 'checkbox';
-                        vtf = 'checked';
+                        vft = 'checked';
                         break;
                     case 'Number':
                         type = 'number';
@@ -85,6 +85,7 @@ ${Object.keys(categories).map(category => {
                         switch (typeof propDefault) {
                             case 'boolean':
                                 type = 'checkbox';
+                                vft = 'checked';
                                 break;
                             case 'number':
                                 type = 'number';
@@ -103,7 +104,7 @@ ${Object.keys(categories).map(category => {
     <td>
         <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
                 beNoticed: {
-                    input: { prop: propKey, vft: 'value', parseValAs: parseVal },
+                    input: { prop: propKey, vft, parseValAs: parseVal },
                 }
             }}>
     </td>
