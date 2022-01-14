@@ -98,7 +98,7 @@ ${Object.keys(categories).map(category => {
     <td>
         <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
                 beNoticed: {
-                    input: { prop: '${propKey}', vft: "value" },
+                    input: { prop: propKey, vft: 'value' },
                 }
             }}>
     </td>
