@@ -26,6 +26,11 @@ export class BaseScaffoldGenerator {
                 }
             }
         }
+        for (const propKey in this.def.config.propDefaults) {
+            if (propPresentationMap !== undefined && propPresentationMap[propKey] === undefined) {
+                categories.unclassified.push(propKey);
+            }
+        }
         return html `<form>
 ${Object.keys(categories).map(category => {
             const categoryProps = categories[category];
