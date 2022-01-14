@@ -74,10 +74,15 @@ ${Object.keys(categories).map(category => {
             const label = propPresentation?.name ?? propKey;
 
             return html`
-<label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}</label>
-<input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
-        
-    } as mib}>`;
+<div part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
+    <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}</label>
+    <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
+        beNoticed: {
+            input: {prop: '${propKey}', vft: "value"},
+        }
+    } as mib}>
+</div>
+`;
         }else{
             throw 'NI';
         }
