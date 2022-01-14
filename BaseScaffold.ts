@@ -1,9 +1,12 @@
 import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib} from './types';
 import {html} from './html.js';
 export {html} from './html.js';
-export {VisualHints as Scaffold} from './types';
+export {VisualHints} from './types';
 
 export class BaseScaffoldGenerator{
+    static generateFrom(def: BeDefinitiveVirtualProps, visualHints: VisualHints = {}){
+        return new BaseScaffoldGenerator(def, visualHints);
+    }
     constructor(public def: BeDefinitiveVirtualProps, public visualHints: VisualHints = {}){}
 
     get html(){

@@ -3,6 +3,9 @@ export { html } from './html.js';
 export class BaseScaffoldGenerator {
     def;
     visualHints;
+    static generateFrom(def, visualHints = {}) {
+        return new BaseScaffoldGenerator(def, visualHints);
+    }
     constructor(def, visualHints = {}) {
         this.def = def;
         this.visualHints = visualHints;
