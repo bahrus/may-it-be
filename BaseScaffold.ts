@@ -32,13 +32,20 @@ export class BaseScaffoldGenerator{
                 categories.Unclassified.push(propKey);
             }
         }
-        return html`<form>
+        return html`
+<template be-active>
+    <script id=be-noticed/be-noticed.js></script>
+</template>
+<form>
 ${Object.keys(categories).map(category => {
     const categoryProps = categories[category];
     return html`
     <fieldset>
         <legend>${category}</legend>
-        ${categoryProps.map(propKey => this.renderProp(propKey))}
+        <table>
+            ${categoryProps.map(propKey => this.renderProp(propKey))}
+        </table>
+        
     </fieldset>
     `;
 })}
@@ -74,14 +81,19 @@ ${Object.keys(categories).map(category => {
             const label = propPresentation?.name ?? propKey;
 
             return html`
-<div part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
-    <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}</label>
-    <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
-        beNoticed: {
-            input: {prop: '${propKey}', vft: "value"},
-        }
-    } as mib}>
-</div>
+<tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
+    <td>
+        <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}</label>
+    </td>
+    <td>
+        <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
+            beNoticed: {
+                input: {prop: '${propKey}', vft: "value"},
+            }
+        } as mib}>
+    </td>
+
+</tr>
 `;
         }else{
             throw 'NI';
