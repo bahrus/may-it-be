@@ -1,6 +1,6 @@
 import {camelToLisp} from './camelToLisp.js';
 
-export function html(strings: TemplateStringsArray, ...keys: any[]) {
+export function html(strings: TemplateStringsArray, ...keys: any[]): string {
     const out = [];
     for (let i = 0, ii = strings.length; i < ii; i++) {
         out.push(strings[i]);
@@ -10,12 +10,14 @@ export function html(strings: TemplateStringsArray, ...keys: any[]) {
             if(typeof ithKey === 'object'){
                 if(Array.isArray(ithKey)){
                     for(const key of ithKey){
-                        out.push(ithKey[key]);
+                        out.push(html`${ithKey[key]}`);
+                    }
+                }else{
+                    for(let key in ithKey){
+                        out.push(`${camelToLisp(key)}='${JSON.stringify(ithKey[key])}'`);
                     }
                 }
-                for(let key in ithKey){
-                    out.push(`${camelToLisp(key)}='${JSON.stringify(ithKey[key])}'`);
-                }
+
             }else{
                 out.push(ithKey);
             }
