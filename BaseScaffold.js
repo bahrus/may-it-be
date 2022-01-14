@@ -19,7 +19,7 @@ export class BaseScaffoldGenerator {
             for (const propKey in this.visualHints.propPresentationMap) {
                 const propPresentation = propPresentationMap[propKey];
                 if (propPresentation.category === undefined) {
-                    categories.unclassified.push(propKey);
+                    categories.Unclassified.push(propKey);
                 }
                 else {
                     if (categories[propPresentation.category] === undefined) {
@@ -31,7 +31,7 @@ export class BaseScaffoldGenerator {
         }
         for (const propKey in this.def.config.propDefaults) {
             if (propPresentationMap === undefined || propPresentationMap[propKey] === undefined) {
-                categories.unclassified.push(propKey);
+                categories.Unclassified.push(propKey);
             }
         }
         return html `<form>
