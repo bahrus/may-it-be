@@ -49,31 +49,38 @@ ${Object.keys(categories).map(category => {
         const propPresentation = this.visualHints.propPresentationMap?.[propKey];
         const propDefault = this.def.config.propDefaults?.[propKey];
         const propInfo = this.def.config.propInfo?.[propKey];
-        let tagName = propPresentation?.tagName || 'input';
-        let type = 'text';
-        if(propPresentation?.inputType !== undefined){
-            type = propPresentation.inputType;
-        }else{
-            switch(propInfo?.type){
-                case 'Boolean':
-                    type = 'checkbox';
-                    break;
-                case 'Number':
-                    type = 'number';
-                    break;
-                case 'Object':
-                    tagName = 'xtal-editor';
-                    break;
+        const isInput = !propPresentation?.tagName;
+        let tagName = isInput ? 'input' : propPresentation?.tagName;
+        if(isInput){
+            let type = 'text';
+            if(propPresentation?.inputType !== undefined){
+                type = propPresentation.inputType;
+            }else{
+                switch(propInfo?.type){
+                    case 'Boolean':
+                        type = 'checkbox';
+                        break;
+                    case 'Number':
+                        type = 'number';
+                        break;
+                    case 'Object':
+                        tagName = 'xtal-editor';
+                        break;
+                }
+                
             }
             
-        }
+            const value = propDefault;
+            const label = propPresentation?.name ?? propKey;
+
+            return html`
+<label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}</label>
+<input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
         
-        let value = propDefault;
+    } as mib}>`;
+        }else{
+            throw 'NI';
+        }
 
-        return html`
-        <input itemprop=${propKey} type=${type} ${{
-
-        } as mib}>
-        `;
     }
 }
