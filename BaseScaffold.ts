@@ -1,24 +1,27 @@
-import {DefineArgs, Scaffold, MayItBe as mib} from './types';
+import {BeDefinitiveVirtualProps, Scaffold, MayItBe as mib} from './types';
 import {html} from './html.js';
 export {html} from './html.js';
+export {Scaffold} from './types';
 
 export class BaseScaffoldGenerator{
-    constructor(public args: DefineArgs, public scaffold: Scaffold){}
+    constructor(public def: BeDefinitiveVirtualProps, public scaffold: Scaffold){}
 
-    render(){
+    get html(){
         const categories: {[key: string]: string[]} = {
             unclassified: [],
         };
         const propPresentationMap = this.scaffold.propPresentationMap;
-        for(const propKey in this.scaffold.propPresentationMap){
-            const propPresentation = propPresentationMap[propKey]!;
-            if(propPresentation.category === undefined){
-                categories.unclassified.push(propKey);
-            }else{
-                if(categories[propPresentation.category] === undefined){
-                    categories[propPresentation.category] = [];
+        if(propPresentationMap !== undefined){
+            for(const propKey in this.scaffold.propPresentationMap){
+                const propPresentation = propPresentationMap[propKey]!;
+                if(propPresentation.category === undefined){
+                    categories.unclassified.push(propKey);
+                }else{
+                    if(categories[propPresentation.category] === undefined){
+                        categories[propPresentation.category] = [];
+                    }
+                    categories[propPresentation.category].push(propKey);
                 }
-                categories[propPresentation.category].push(propKey);
             }
         }
         return html`<form>
@@ -35,8 +38,8 @@ ${Object.keys(categories).map(category => {
     }
 
     renderProp(propKey: string){
-        const propPresentation = this.scaffold.propPresentationMap[propKey]!;
-        const propDefault = this.args.beDefinitiveProps.config.propDefaults?.[propKey];
+        const propPresentation = this.scaffold.propPresentationMap![propKey]!;
+        const propDefault = this.def.config.propDefaults?.[propKey];
         const propInfo = this.args.beDefinitiveProps.config.propInfo?.[propKey];
         let tagName = propPresentation.tagName || 'input';
         let type = 'text';

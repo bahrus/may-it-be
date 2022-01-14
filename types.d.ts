@@ -34,8 +34,8 @@ export interface DefineArgs{
 }
 
 export interface Scaffold<TProps = any, TEventHandlers = TProps>{
-    propPresentationMap: Partial<{[key in keyof TProps]: PropPresentation}>,
-    triggerPresentationMap: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
+    propPresentationMap?: Partial<{[key in keyof TProps]: PropPresentation}>,
+    triggerPresentationMap?: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
 }
 
 export interface IPresentationElement{
@@ -47,8 +47,8 @@ export interface IPresentationElement{
 }
 
 export interface PropPresentation extends IPresentationElement{
-    readOnly: boolean,
-    editor: any,
+    readOnly?: boolean,
+    editor?: any,
 }
 
 export interface EventTriggerPresentation extends IPresentationElement{

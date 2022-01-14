@@ -1,27 +1,29 @@
 import { html } from './html.js';
 export { html } from './html.js';
 export class BaseScaffoldGenerator {
-    args;
+    def;
     scaffold;
-    constructor(args, scaffold) {
-        this.args = args;
+    constructor(def, scaffold) {
+        this.def = def;
         this.scaffold = scaffold;
     }
-    render() {
+    get html() {
         const categories = {
             unclassified: [],
         };
         const propPresentationMap = this.scaffold.propPresentationMap;
-        for (const propKey in this.scaffold.propPresentationMap) {
-            const propPresentation = propPresentationMap[propKey];
-            if (propPresentation.category === undefined) {
-                categories.unclassified.push(propKey);
-            }
-            else {
-                if (categories[propPresentation.category] === undefined) {
-                    categories[propPresentation.category] = [];
+        if (propPresentationMap !== undefined) {
+            for (const propKey in this.scaffold.propPresentationMap) {
+                const propPresentation = propPresentationMap[propKey];
+                if (propPresentation.category === undefined) {
+                    categories.unclassified.push(propKey);
                 }
-                categories[propPresentation.category].push(propKey);
+                else {
+                    if (categories[propPresentation.category] === undefined) {
+                        categories[propPresentation.category] = [];
+                    }
+                    categories[propPresentation.category].push(propKey);
+                }
             }
         }
         return html `<form>
@@ -38,7 +40,7 @@ ${Object.keys(categories).map(category => {
     }
     renderProp(propKey) {
         const propPresentation = this.scaffold.propPresentationMap[propKey];
-        const propDefault = this.args.beDefinitiveProps.config.propDefaults?.[propKey];
+        const propDefault = this.def.config.propDefaults?.[propKey];
         const propInfo = this.args.beDefinitiveProps.config.propInfo?.[propKey];
         let tagName = propPresentation.tagName || 'input';
         let type = 'text';
