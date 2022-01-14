@@ -8,6 +8,11 @@ export function html(strings: TemplateStringsArray, ...keys: any[]) {
         const ithKey = keys[i];
         if (ithKey !== undefined) {
             if(typeof ithKey === 'object'){
+                if(Array.isArray(ithKey)){
+                    for(const key of ithKey){
+                        out.push(ithKey[key]);
+                    }
+                }
                 for(let key in ithKey){
                     out.push(`${camelToLisp(key)}='${JSON.stringify(ithKey[key])}'`);
                 }
