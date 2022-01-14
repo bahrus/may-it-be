@@ -33,7 +33,7 @@ export interface DefineArgs{
     scaffoldGenerator?: BaseScaffoldGenerator,
 }
 
-export interface Scaffold<TProps = any, TEventHandlers = TProps>{
+export interface VisualHints<TProps = any, TEventHandlers = TProps>{
     propPresentationMap?: Partial<{[key in keyof TProps]: PropPresentation}>,
     triggerPresentationMap?: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
 }

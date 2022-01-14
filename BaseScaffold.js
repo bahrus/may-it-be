@@ -2,18 +2,18 @@ import { html } from './html.js';
 export { html } from './html.js';
 export class BaseScaffoldGenerator {
     def;
-    scaffold;
-    constructor(def, scaffold) {
+    visualHints;
+    constructor(def, visualHints = {}) {
         this.def = def;
-        this.scaffold = scaffold;
+        this.visualHints = visualHints;
     }
     get html() {
         const categories = {
             unclassified: [],
         };
-        const propPresentationMap = this.scaffold.propPresentationMap;
+        const propPresentationMap = this.visualHints.propPresentationMap;
         if (propPresentationMap !== undefined) {
-            for (const propKey in this.scaffold.propPresentationMap) {
+            for (const propKey in this.visualHints.propPresentationMap) {
                 const propPresentation = propPresentationMap[propKey];
                 if (propPresentation.category === undefined) {
                     categories.unclassified.push(propKey);
@@ -27,7 +27,7 @@ export class BaseScaffoldGenerator {
             }
         }
         for (const propKey in this.def.config.propDefaults) {
-            if (propPresentationMap !== undefined && propPresentationMap[propKey] === undefined) {
+            if (propPresentationMap === undefined || propPresentationMap[propKey] === undefined) {
                 categories.unclassified.push(propKey);
             }
         }
@@ -44,12 +44,12 @@ ${Object.keys(categories).map(category => {
 </form>`;
     }
     renderProp(propKey) {
-        const propPresentation = this.scaffold.propPresentationMap[propKey];
+        const propPresentation = this.visualHints.propPresentationMap?.[propKey];
         const propDefault = this.def.config.propDefaults?.[propKey];
         const propInfo = this.def.config.propInfo?.[propKey];
-        let tagName = propPresentation.tagName || 'input';
+        let tagName = propPresentation?.tagName || 'input';
         let type = 'text';
-        if (propPresentation.inputType !== undefined) {
+        if (propPresentation?.inputType !== undefined) {
             type = propPresentation.inputType;
         }
         else {
