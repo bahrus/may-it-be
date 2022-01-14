@@ -10,7 +10,7 @@ export function html(strings: TemplateStringsArray, ...keys: any[]): string {
             if(typeof ithKey === 'object'){
                 if(Array.isArray(ithKey)){
                     for(const key of ithKey){
-                        out.push(html`${ithKey[key]}`);
+                        out.push(html`${key}`);
                     }
                 }else{
                     for(let key in ithKey){

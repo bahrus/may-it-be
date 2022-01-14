@@ -9,7 +9,7 @@ export function html(strings, ...keys) {
             if (typeof ithKey === 'object') {
                 if (Array.isArray(ithKey)) {
                     for (const key of ithKey) {
-                        out.push(html `${ithKey[key]}`);
+                        out.push(html `${key}`);
                     }
                 }
                 else {
