@@ -33,9 +33,6 @@ export class BaseScaffoldGenerator{
             }
         }
         return html`
-<template be-active>
-    <script id=be-noticed/be-noticed.js></script>
-</template>
 <form>
 ${Object.keys(categories).map(category => {
     const categoryProps = categories[category];
@@ -49,7 +46,12 @@ ${Object.keys(categories).map(category => {
     </fieldset>
     `;
 })}
-</form>`;
+</form>
+<template be-active>
+    <script id=be-noticed/be-noticed.js></script>
+</template>
+<be-hive></be-hive>
+`;
     }
 
     renderProp(propKey: string){
@@ -73,6 +75,16 @@ ${Object.keys(categories).map(category => {
                     case 'Object':
                         tagName = 'xtal-editor';
                         break;
+                    default:
+                        switch(typeof propDefault){
+                            case 'boolean':
+                                type = 'checkbox';
+                                break;
+                            case 'number':
+                                type = 'number';
+                                break;
+                                
+                        }
                 }
                 
             }
@@ -83,7 +95,7 @@ ${Object.keys(categories).map(category => {
             return html`
 <tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
     <td>
-        <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}</label>
+        <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
     </td>
     <td>
         <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
