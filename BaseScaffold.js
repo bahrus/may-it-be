@@ -63,6 +63,8 @@ ${Object.keys(categories).map(category => {
         let tagName = isInput ? 'input' : propPresentation?.tagName;
         if (isInput) {
             let type = 'text';
+            let parseVal = 'string';
+            let vtf = 'value';
             if (propPresentation?.inputType !== undefined) {
                 type = propPresentation.inputType;
             }
@@ -70,9 +72,11 @@ ${Object.keys(categories).map(category => {
                 switch (propInfo?.type) {
                     case 'Boolean':
                         type = 'checkbox';
+                        vtf = 'checked';
                         break;
                     case 'Number':
                         type = 'number';
+                        parseVal = 'int';
                         break;
                     case 'Object':
                         tagName = 'xtal-editor';
@@ -84,6 +88,7 @@ ${Object.keys(categories).map(category => {
                                 break;
                             case 'number':
                                 type = 'number';
+                                parseVal = 'int';
                                 break;
                         }
                 }
@@ -98,7 +103,7 @@ ${Object.keys(categories).map(category => {
     <td>
         <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
                 beNoticed: {
-                    input: { prop: propKey, vft: 'value' },
+                    input: { prop: propKey, vft: 'value', parseValAs: parseVal },
                 }
             }}>
     </td>
