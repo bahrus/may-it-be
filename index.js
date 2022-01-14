@@ -1,5 +1,5 @@
-import { html } from './html';
-export { html } from './html';
+import { html } from './html.js';
+export { html } from './html.js';
 export const doInitTransform = {
     cloneTemplate: {
         ifAllOf: ['mainTemplate'],
