@@ -12,6 +12,9 @@
   "main": "index.js",
   "module": "index.js",
   "exports": {
+    "./BaseScaffold.js": "./BaseScaffold.js",
+    "./camelToLisp.js": "./camelToLisp.js",
+    "./html.js": "./html.js",
     ".": "./index.js",
     "./index.js": "./index.js"
   },

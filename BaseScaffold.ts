@@ -40,7 +40,7 @@ ${Object.keys(categories).map(category => {
     renderProp(propKey: string){
         const propPresentation = this.scaffold.propPresentationMap![propKey]!;
         const propDefault = this.def.config.propDefaults?.[propKey];
-        const propInfo = this.args.beDefinitiveProps.config.propInfo?.[propKey];
+        const propInfo = this.def.config.propInfo?.[propKey];
         let tagName = propPresentation.tagName || 'input';
         let type = 'text';
         if(propPresentation.inputType !== undefined){
