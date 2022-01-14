@@ -11,7 +11,7 @@ export class BaseScaffoldGenerator{
 
     get html(){
         const categories: {[key: string]: string[]} = {
-            unclassified: [],
+            Unclassified: [],
         };
         const propPresentationMap = this.visualHints.propPresentationMap;
         if(propPresentationMap !== undefined){
