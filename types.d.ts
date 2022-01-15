@@ -49,6 +49,7 @@ export interface IPresentationElement{
     tagName?: string,
     ssrPath?: string,
     style?: Partial<CSSStyleDeclaration>,
+    mayItBe?: MayItBe,
 }
 
 export interface PropPresentation extends IPresentationElement{
