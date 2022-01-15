@@ -31,6 +31,7 @@ export interface DefineArgs{
     beDefinitiveProps: BeDefinitiveVirtualProps,
     encodeAndWrite: (html: string) => void,
     mode: '-js' | '-html' | '-dfn',
+    bundled?: boolean,
     dependencies?: string[],
     scaffoldGenerator?: BaseScaffoldGenerator,
 }
