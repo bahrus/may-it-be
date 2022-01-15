@@ -47,6 +47,7 @@ export interface IPresentationElement{
     description?: string,
     inputType?: string,
     tagName?: string,
+    ssrPath?: string,
 }
 
 export interface PropPresentation extends IPresentationElement{

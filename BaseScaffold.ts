@@ -54,6 +54,7 @@ ${Object.keys(categories).map(category => {
 </form>
 <template be-active>
     <script id=be-noticed/be-noticed.js></script>
+    <script id=be-importing/be-importing.js></script>
 </template>
 <be-hive></be-hive>
 `;
@@ -126,12 +127,13 @@ ${Object.keys(categories).map(category => {
 
     renderCEProp(propKey: ssn, propPresentation: PropPresentation){
         //TODO:  distinguish between form associated custom elements (with label support?)
+        const {ssrPath} = propPresentation;
+        const ssr = ssrPath ? `be-importing=${ssrPath}` : '';
         return html`
 <tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}">
     <td colspan="2">
-        <${propPresentation.tagName} itemprop=${propKey}></${propPresentation.tagName}>
+        <${propPresentation.tagName} ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
     </td>
-</tr>
-        `;
+</tr>`;
     }
 }
