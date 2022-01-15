@@ -112,11 +112,13 @@ ${Object.keys(categories).map(category => {
         <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
     </td>
     <td>
-        <input id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
-            beNoticed: {
-                input: {prop: propKey, vft, parseValAs: parseVal},
-            }
-        } as mib}>
+        ${isInput ? html`
+            <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
+                beNoticed: {
+                    input: {prop: propKey, vft, parseValAs: parseVal},
+                }
+            } as mib}>` : this.renderCEProp(propKey, propPresentation)}
+        }
     </td>
 
 </tr>
@@ -127,19 +129,27 @@ ${Object.keys(categories).map(category => {
 
     }
 
+    renderStyle(propPresentation:  PropPresentation | undefined){
+        if(propPresentation === undefined){
+            return '';
+        }
+        const {style} = propPresentation;
+        if(style === undefined){
+            return '';
+        }
+        const styleTokens: string[] = [];
+        for(const key in style){
+            styleTokens.push(`${key}: ${style[key]}`);
+        }
+        return styleTokens.join(';');
+    }
+
     renderCEProp(propKey: ssn, propPresentation: PropPresentation){
         //TODO:  distinguish between form associated custom elements (with label support?)
         const {ssrPath} = propPresentation;
-        const label = propPresentation?.name ?? propKey;
         const ssr = ssrPath ? `be-importing=${ssrPath}` : '';
         return html`
-<tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}">
-    <td>
-        <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
-    </td>   
-    <td>
-        <${propPresentation.tagName}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
-    </td>
-</tr>`;
+        <${propPresentation.tagName} ${this.renderStyle(propPresentation)}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
+`; 
     }
 }
