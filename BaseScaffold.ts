@@ -1,4 +1,4 @@
-import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn} from './types';
+import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation} from './types';
 import {html} from './html.js';
 export {html} from './html.js';
 export {VisualHints, ssn} from './types';
@@ -119,8 +119,19 @@ ${Object.keys(categories).map(category => {
 </tr>
 `;
         }else{
-            throw 'NI';
+            return this.renderCEProp(propKey, propPresentation!);
         }
 
+    }
+
+    renderCEProp(propKey: ssn, propPresentation: PropPresentation){
+        //TODO:  distinguish between form associated custom elements (with label support?)
+        return html`
+<tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}">
+    <td colspan="2">
+        <${propPresentation.tagName} itemprop=${propKey}></${propPresentation.tagName}>
+    </td>
+</tr>
+        `;
     }
 }

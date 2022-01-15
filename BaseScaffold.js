@@ -117,7 +117,17 @@ ${Object.keys(categories).map(category => {
 `;
         }
         else {
-            throw 'NI';
+            return this.renderCEProp(propKey, propPresentation);
         }
+    }
+    renderCEProp(propKey, propPresentation) {
+        //TODO:  distinguish between form associated custom elements (with label support?)
+        return html `
+<tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}">
+    <td colspan="2">
+        <${propPresentation.tagName} itemprop=${propKey}></${propPresentation.tagName}>
+    </td>
+</tr>
+        `;
     }
 }
