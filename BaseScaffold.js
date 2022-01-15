@@ -1,5 +1,5 @@
 import { html } from './html.js';
-import { camelToLisp } from './camelToLisp';
+import { camelToLisp } from './camelToLisp.js';
 export { camelToLisp };
 export { html };
 export class BaseScaffoldGenerator {

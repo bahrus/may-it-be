@@ -1,6 +1,6 @@
 import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation} from './types';
 import {html} from './html.js';
-import { camelToLisp } from './camelToLisp';
+import { camelToLisp } from './camelToLisp.js';
 export { camelToLisp };
 export {html};
 export {VisualHints, ssn};
