@@ -123,10 +123,9 @@ ${Object.keys(categories).map(category => {
                 beNoticed: {
                     input: {prop: propKey, vft, parseValAs: parseVal},
                 }
-            } as mib}>` : this.renderCEProp(propKey, propPresentation)}
+            } as mib}>` : this.renderCEProp(propKey, propPresentation)
         }
     </td>
-
 </tr>
 `;
 

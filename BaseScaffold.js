@@ -121,9 +121,7 @@ ${Object.keys(categories).map(category => {
                 input: { prop: propKey, vft, parseValAs: parseVal },
             }
         }}>` : this.renderCEProp(propKey, propPresentation)}
-        }
     </td>
-
 </tr>
 `;
     }
