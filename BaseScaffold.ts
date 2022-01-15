@@ -42,6 +42,11 @@ export class BaseScaffoldGenerator{
             categories.Unclassified = [...unclassifiedProps];
         }
         return html`
+<style>
+    :host{
+        display: block;
+    }
+</style>
 <form>
 ${Object.keys(categories).map(category => {
     const categoryProps = categories[category];
