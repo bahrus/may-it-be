@@ -48,6 +48,7 @@ export interface IPresentationElement{
     inputType?: string,
     tagName?: string,
     ssrPath?: string,
+    style?: CSSStyleDeclaration
 }
 
 export interface PropPresentation extends IPresentationElement{
