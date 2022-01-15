@@ -75,42 +75,41 @@ ${Object.keys(categories).map(category => {
         const propInfo = this.def.config.propInfo?.[propKey];
         const isInput = !propPresentation?.tagName;
         let tagName = isInput ? 'input' : propPresentation?.tagName;
-        if (isInput) {
-            let type = 'text';
-            let parseVal = 'string';
-            let vft = 'value';
-            if (propPresentation?.inputType !== undefined) {
-                type = propPresentation.inputType;
+        let type = 'text';
+        let parseVal = 'string';
+        let vft = 'value';
+        if (propPresentation?.inputType !== undefined) {
+            type = propPresentation.inputType;
+        }
+        else {
+            switch (propInfo?.type) {
+                case 'Boolean':
+                    type = 'checkbox';
+                    vft = 'checked';
+                    break;
+                case 'Number':
+                    type = 'number';
+                    parseVal = 'int';
+                    break;
+                case 'Object':
+                    tagName = 'xtal-editor';
+                    break;
+                default:
+                    switch (typeof propDefault) {
+                        case 'boolean':
+                            type = 'checkbox';
+                            vft = 'checked';
+                            break;
+                        case 'number':
+                            type = 'number';
+                            parseVal = 'int';
+                            break;
+                    }
             }
-            else {
-                switch (propInfo?.type) {
-                    case 'Boolean':
-                        type = 'checkbox';
-                        vft = 'checked';
-                        break;
-                    case 'Number':
-                        type = 'number';
-                        parseVal = 'int';
-                        break;
-                    case 'Object':
-                        tagName = 'xtal-editor';
-                        break;
-                    default:
-                        switch (typeof propDefault) {
-                            case 'boolean':
-                                type = 'checkbox';
-                                vft = 'checked';
-                                break;
-                            case 'number':
-                                type = 'number';
-                                parseVal = 'int';
-                                break;
-                        }
-                }
-            }
-            const value = propDefault;
-            const label = propPresentation?.name ?? propKey;
-            return html `
+        }
+        const value = propDefault;
+        const label = propPresentation?.name ?? propKey;
+        return html `
 <tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
     <td>
         <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
@@ -118,19 +117,15 @@ ${Object.keys(categories).map(category => {
     <td>
         ${isInput ? html `
             <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
-                beNoticed: {
-                    input: { prop: propKey, vft, parseValAs: parseVal },
-                }
-            }}>` : this.renderCEProp(propKey, propPresentation)}
+            beNoticed: {
+                input: { prop: propKey, vft, parseValAs: parseVal },
+            }
+        }}>` : this.renderCEProp(propKey, propPresentation)}
         }
     </td>
 
 </tr>
 `;
-        }
-        else {
-            return this.renderCEProp(propKey, propPresentation);
-        }
     }
     renderStyle(propPresentation) {
         if (propPresentation === undefined) {
