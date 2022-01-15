@@ -13,22 +13,9 @@ export class BaseScaffoldGenerator {
     get html() {
         const categories = {
             Unclassified: [],
+            ...this.visualHints.fieldSets
         };
         const propPresentationMap = this.visualHints.propPresentationMap;
-        if (propPresentationMap !== undefined) {
-            for (const propKey in this.visualHints.propPresentationMap) {
-                const propPresentation = propPresentationMap[propKey];
-                if (propPresentation.category === undefined) {
-                    categories.Unclassified.push(propKey);
-                }
-                else {
-                    if (categories[propPresentation.category] === undefined) {
-                        categories[propPresentation.category] = [];
-                    }
-                    categories[propPresentation.category].push(propKey);
-                }
-            }
-        }
         for (const propKey in this.def.config.propDefaults) {
             if (propPresentationMap === undefined || propPresentationMap[propKey] === undefined) {
                 categories.Unclassified.push(propKey);

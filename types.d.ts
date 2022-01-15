@@ -36,12 +36,12 @@ export interface DefineArgs{
 export interface VisualHints<TProps = any, TEventHandlers = TProps>{
     propPresentationMap?: Partial<{[key in keyof TProps]: PropPresentation}>,
     triggerPresentationMap?: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
+    fieldSets?: {[key: string]: (keyof TProps | keyof TEventHandlers)[]},
 }
 
 export interface IPresentationElement{
     name?: string,
     description?: string,
-    category?: string,
     inputType?: string,
     tagName?: string,
 }
