@@ -37,7 +37,9 @@ export class BaseScaffoldGenerator {
                 }
             }
         }
-        categories.Unclassified = [...unclassifiedProps];
+        if (unclassifiedProps.size > 0) {
+            categories.Unclassified = [...unclassifiedProps];
+        }
         return html `
 <form>
 ${Object.keys(categories).map(category => {
@@ -124,11 +126,15 @@ ${Object.keys(categories).map(category => {
     renderCEProp(propKey, propPresentation) {
         //TODO:  distinguish between form associated custom elements (with label support?)
         const { ssrPath } = propPresentation;
+        const label = propPresentation?.name ?? propKey;
         const ssr = ssrPath ? `be-importing=${ssrPath}` : '';
         return html `
 <tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}">
-    <td colspan="2">
-        <${propPresentation.tagName} ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
+    <td>
+        <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
+    </td>   
+    <td>
+        <${propPresentation.tagName}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
     </td>
 </tr>`;
     }
