@@ -10,13 +10,22 @@ export class BaseScaffoldGenerator{
     constructor(public def: BeDefinitiveVirtualProps, public visualHints: VisualHints = {}){}
 
     get html(){
+        const {fieldSets} = this.visualHints;
         const categories: {[key: string]: string[]} = {
             Unclassified: [],
-            ...this.visualHints.fieldSets
+            ...fieldSets
         };
-        const propPresentationMap = this.visualHints.propPresentationMap;
+        const classifiedProps = new Set<string>();
+        if(fieldSets !== undefined){
+            for(const val of Object.values(fieldSets)){
+                for(const prop of val){
+                    classifiedProps.add(prop as string);
+                }
+            }
+        }
+        //const propPresentationMap = this.visualHints.propPresentationMap;
         for(const propKey in this.def.config.propDefaults){
-            if(propPresentationMap === undefined || propPresentationMap[propKey] === undefined){
+            if(!classifiedProps.has(propKey)){
                 categories.Unclassified.push(propKey);
             }
         }
