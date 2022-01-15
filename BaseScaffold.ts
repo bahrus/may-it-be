@@ -1,7 +1,7 @@
-import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib} from './types';
+import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn} from './types';
 import {html} from './html.js';
 export {html} from './html.js';
-export {VisualHints} from './types';
+export {VisualHints, ssn} from './types';
 
 export class BaseScaffoldGenerator{
     static generateFrom(def: BeDefinitiveVirtualProps, visualHints: VisualHints = {}){
@@ -11,8 +11,7 @@ export class BaseScaffoldGenerator{
 
     get html(){
         const {fieldSets} = this.visualHints;
-        const categories: {[key: string]: string[]} = {
-            Unclassified: [],
+        const categories: {[key: ssn]: ssn[]} = {
             ...fieldSets
         };
         const classifiedProps = new Set<string>();
@@ -23,12 +22,15 @@ export class BaseScaffoldGenerator{
                 }
             }
         }
+        const unclassifiedProps = new Set<string>();
         //const propPresentationMap = this.visualHints.propPresentationMap;
         for(const propKey in this.def.config.propDefaults){
             if(!classifiedProps.has(propKey)){
-                categories.Unclassified.push(propKey);
+                unclassifiedProps.add(propKey);
             }
         }
+
+        categories.Unclassified = [...unclassifiedProps];
         return html`
 <form>
 ${Object.keys(categories).map(category => {
@@ -51,10 +53,10 @@ ${Object.keys(categories).map(category => {
 `;
     }
 
-    renderProp(propKey: string){
-        const propPresentation = this.visualHints.propPresentationMap?.[propKey];
-        const propDefault = this.def.config.propDefaults?.[propKey];
-        const propInfo = this.def.config.propInfo?.[propKey];
+    renderProp(propKey: ssn){
+        const propPresentation = this.visualHints.propPresentationMap?.[propKey as string];
+        const propDefault = this.def.config.propDefaults?.[propKey as string];
+        const propInfo = this.def.config.propInfo?.[propKey as string];
         const isInput = !propPresentation?.tagName;
         let tagName = isInput ? 'input' : propPresentation?.tagName;
         if(isInput){

@@ -13,7 +13,6 @@ export class BaseScaffoldGenerator {
     get html() {
         const { fieldSets } = this.visualHints;
         const categories = {
-            Unclassified: [],
             ...fieldSets
         };
         const classifiedProps = new Set();
@@ -24,12 +23,14 @@ export class BaseScaffoldGenerator {
                 }
             }
         }
+        const unclassifiedProps = new Set();
         //const propPresentationMap = this.visualHints.propPresentationMap;
         for (const propKey in this.def.config.propDefaults) {
             if (!classifiedProps.has(propKey)) {
-                categories.Unclassified.push(propKey);
+                unclassifiedProps.add(propKey);
             }
         }
+        categories.Unclassified = [...unclassifiedProps];
         return html `
 <form>
 ${Object.keys(categories).map(category => {
