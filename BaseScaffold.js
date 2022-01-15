@@ -1,5 +1,7 @@
 import { html } from './html.js';
-export { html } from './html.js';
+import { camelToLisp } from './camelToLisp';
+export { camelToLisp };
+export { html };
 export class BaseScaffoldGenerator {
     def;
     visualHints;
@@ -135,9 +137,9 @@ ${Object.keys(categories).map(category => {
         }
         const styleTokens = [];
         for (const key in style) {
-            styleTokens.push(`${key}: ${style[key]}`);
+            styleTokens.push(`${camelToLisp(key)}: ${style[key]}`);
         }
-        return styleTokens.join(';');
+        return ` style="${styleTokens.join(';')}"`;
     }
     renderCEProp(propKey, propPresentation) {
         //TODO:  distinguish between form associated custom elements (with label support?)

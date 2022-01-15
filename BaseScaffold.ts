@@ -1,7 +1,9 @@
 import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation} from './types';
 import {html} from './html.js';
-export {html} from './html.js';
-export {VisualHints, ssn} from './types';
+import { camelToLisp } from './camelToLisp';
+export { camelToLisp };
+export {html};
+export {VisualHints, ssn};
 
 export class BaseScaffoldGenerator{
     static generateFrom(def: BeDefinitiveVirtualProps, visualHints: VisualHints = {}){
@@ -139,9 +141,9 @@ ${Object.keys(categories).map(category => {
         }
         const styleTokens: string[] = [];
         for(const key in style){
-            styleTokens.push(`${key}: ${style[key]}`);
+            styleTokens.push(`${camelToLisp(key)}: ${style[key]}`);
         }
-        return styleTokens.join(';');
+        return ` style="${styleTokens.join(';')}"` ;
     }
 
     renderCEProp(propKey: ssn, propPresentation: PropPresentation){
