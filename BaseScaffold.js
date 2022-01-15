@@ -24,10 +24,17 @@ export class BaseScaffoldGenerator {
             }
         }
         const unclassifiedProps = new Set();
-        //const propPresentationMap = this.visualHints.propPresentationMap;
         for (const propKey in this.def.config.propDefaults) {
             if (!classifiedProps.has(propKey)) {
                 unclassifiedProps.add(propKey);
+            }
+        }
+        const ppm = this.visualHints.propPresentationMap;
+        if (ppm !== undefined) {
+            for (const propKey in this.visualHints.propPresentationMap) {
+                if (!classifiedProps.has(propKey)) {
+                    unclassifiedProps.add(propKey);
+                }
             }
         }
         categories.Unclassified = [...unclassifiedProps];
