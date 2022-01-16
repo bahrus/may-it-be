@@ -123,12 +123,27 @@ ${Object.keys(categories).map(category => {
                 beNoticed: {
                     input: {prop: propKey, vft, parseValAs: parseVal},
                 }
-            } as mib}>` : this.renderCEProp(propKey, propPresentation)
+            } as mib} ${this.renderMayItBe(propPresentation)}>` : this.renderCEProp(propKey, propPresentation)
         }
     </td>
 </tr>
 `;
 
+    }
+
+    renderMayItBe(propPresentation: PropPresentation | undefined){
+        if(propPresentation === undefined){
+            return '';
+        }
+        const {mayItBe} = propPresentation;
+        if(mayItBe === undefined){
+            return '';
+        }
+        const mayItBeTokens: string[] = [];
+        for(const key in mayItBe){
+            const val = (<any>mayItBe)[key];
+            mayItBeTokens.push(`${key}='${JSON.stringify(val)}'`);
+        }
     }
 
     renderStyle(propPresentation:  PropPresentation | undefined){
@@ -151,7 +166,7 @@ ${Object.keys(categories).map(category => {
         const {ssrPath} = propPresentation;
         const ssr = ssrPath ? `be-importing=${ssrPath}` : '';
         return html`
-        <${propPresentation.tagName} ${this.renderStyle(propPresentation)}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
+        <${propPresentation.tagName} ${this.renderStyle(propPresentation)} ${this.renderMayItBe(propPresentation)}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
 `; 
     }
 }
