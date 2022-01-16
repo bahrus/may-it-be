@@ -1,4 +1,5 @@
 import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation} from './types';
+import { IObserveMap } from 'be-observant/types';
 import {html} from './html.js';
 import { camelToLisp } from './camelToLisp.js';
 export { camelToLisp };
@@ -64,6 +65,7 @@ ${Object.keys(categories).map(category => {
 <template be-active>
     <script id=be-noticed/be-noticed.js></script>
     <script id=be-importing/be-importing.js></script>
+    <script id=be-observant/be-observant.js></script>
 </template>
 <be-hive></be-hive>
 `;
@@ -78,33 +80,49 @@ ${Object.keys(categories).map(category => {
         let type = 'text';
         let parseVal: 'int' | 'float' | 'bool' | 'date' | 'truthy' | 'falsy' | undefined | 'string' | 'object' = 'string';
         let vft = 'value';
-        if(propPresentation?.inputType !== undefined){
-            type = propPresentation.inputType;
-        }else{
-            switch(propInfo?.type){
-                case 'Boolean':
-                    type = 'checkbox';
-                    vft = 'checked';
-                    break;
-                case 'Number':
-                    type = 'number';
-                    parseVal = 'int';
-                    break;
-                case 'Object':
-                    tagName = 'xtal-editor';
-                    break;
-                default:
-                    switch(typeof propDefault){
-                        case 'boolean':
-                            type = 'checkbox';
-                            vft = 'checked';
-                            break;
-                        case 'number':
-                            type = 'number';
-                            parseVal = 'int';
-                            break;
-                            
+        let beObservant : IObserveMap<Partial<HTMLInputElement>> | undefined = undefined;
+        if(isInput){
+            if(propPresentation?.inputType !== undefined){
+                type = propPresentation.inputType;
+            }else{
+                switch(propInfo?.type){
+                    case 'Boolean':
+                        type = 'checkbox';
+                        vft = 'checked';
+                        break;
+                    case 'Number':
+                        type = 'number';
+                        parseVal = 'int';
+                        break;
+                    case 'Object':
+                        tagName = 'xtal-editor';
+                        break;
+                    default:
+                        switch(typeof propDefault){
+                            case 'boolean':
+                                type = 'checkbox';
+                                vft = 'checked';
+                                break;
+                            case 'number':
+                                type = 'number';
+                                parseVal = 'int';
+                                break;
+                                
+                        }
+                }
+            }
+            switch(type){
+                case 'checkbox':
+                    beObservant = {
+                        checked: '.' + (propKey as string),
                     }
+                    break;
+                case 'text':
+                case 'number':
+                    beObservant = {
+                        value: '.' + (propKey as string),
+                    }
+                    break;
             }
             
         }
@@ -122,7 +140,8 @@ ${Object.keys(categories).map(category => {
             <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
                 beNoticed: {
                     input: {prop: propKey, vft, parseValAs: parseVal},
-                }
+                },
+                beObservant
             } as mib} ${this.renderMayItBe(propPresentation)}>` : this.renderCEProp(propKey, propPresentation)
         }
     </td>
