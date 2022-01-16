@@ -42,8 +42,6 @@ export interface VisualHints<TProps = any, TEventHandlers = TProps>{
     propPresentationMap?: Partial<{[key in keyof TProps]: PropPresentation}>,
     triggerPresentationMap?: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
     fieldSets?: {[key: ssn]: ((keyof TProps) | (keyof TEventHandlers))[]},
-    superClassPath?: string,
-    superClassName?: string,
 }
 
 export interface IPresentationElement{

@@ -40,7 +40,7 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
                     beExportable = html `
 <script id="be-exportable/be-exportable.js"></script>`;
                     if (beDefinitiveProps.scriptRef === undefined)
-                        beDefinitiveProps.scriptRef = beDefinitiveProps.scriptPath;
+                        beDefinitiveProps.scriptRef = 'a_' + (new Date()).valueOf();
                     scriptRef = html `<script id=${beDefinitiveProps.scriptRef} nomodule be-exportable src="${beDefinitiveProps.scriptPath}"></script>`;
                 }
                 const h = html `
@@ -53,9 +53,9 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
             <script id="be-definitive/be-definitive.js"></script>${beExportable}
             ${dependencies.map(d => html `<script id="${d}"></script>`).join('\n')}
         </template>
-        ${scriptRef}
         ${innerHTML}
     </template>
+    ${scriptRef}
 </${beDefinitiveProps.config.tagName}>
 <script type=module>
     if(customElements.get('be-active') === undefined){
