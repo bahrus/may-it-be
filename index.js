@@ -55,8 +55,8 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
         </template>
         ${innerHTML}
     </template>
-    ${scriptRef}
 </${beDefinitiveProps.config.tagName}>
+${scriptRef}
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
