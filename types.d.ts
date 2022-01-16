@@ -10,12 +10,14 @@ import { BeTransformativeVirtualProps } from 'be-transformative/types';
 import { BeLoadedVirtualProps } from 'be-loaded/types';
 export { BeDefinitiveVirtualProps} from 'be-definitive/types';
 import { BaseScaffoldGenerator } from './BaseScaffold';
+import { BeExportableVirtualProps} from 'be-exportable/types';
 
 export type ssn = string | symbol | number;
 
 export interface MayItBe<Self = any, Props = any, Actions = any>{
     beActive?: BeActiveVirtualProps,
     beDefinitive?: BeDefinitiveVirtualProps<Props, Actions>,
+    beExportable?: BeExportableVirtualProps,
     beFerried?: BeFerriedVirtualProps,
     beIntersectional?: BeIntersectionalVirtualProps,
     beLoaded?: BeLoadedVirtualProps,
@@ -40,6 +42,8 @@ export interface VisualHints<TProps = any, TEventHandlers = TProps>{
     propPresentationMap?: Partial<{[key in keyof TProps]: PropPresentation}>,
     triggerPresentationMap?: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
     fieldSets?: {[key: ssn]: ((keyof TProps) | (keyof TEventHandlers))[]},
+    superClassPath?: string,
+    superClassName?: string,
 }
 
 export interface IPresentationElement{
