@@ -11,11 +11,13 @@ import { BeLoadedVirtualProps } from 'be-loaded/types';
 export { BeDefinitiveVirtualProps} from 'be-definitive/types';
 import { BaseScaffoldGenerator } from './BaseScaffold';
 import { BeExportableVirtualProps} from 'be-exportable/types';
+import { BeConsensualVirtualProps } from 'be-consensual/types';
 
 export type ssn = string | symbol | number;
 
 export interface MayItBe<Self = any, Props = any, Actions = any>{
     beActive?: BeActiveVirtualProps,
+    beConsensual?: BeConsensualVirtualProps,
     beDefinitive?: BeDefinitiveVirtualProps<Props, Actions>,
     beExportable?: BeExportableVirtualProps,
     beFerried?: BeFerriedVirtualProps,
