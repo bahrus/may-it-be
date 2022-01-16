@@ -39,7 +39,7 @@ encodeAndWrite(js);
             let beExportable = '';
             if(beDefinitiveProps.scriptPath !== undefined){
                 beExportable = html`
-<script id="be-exportable/be-exportable.js"></script>`;
+<script data-version=latest id="be-exportable/be-exportable.js"></script>`;
                 if(beDefinitiveProps.scriptRef === undefined) beDefinitiveProps.scriptRef = 'a_' + (new Date()).valueOf();
                 scriptRef = html`<script id=${beDefinitiveProps.scriptRef} nomodule be-exportable src="${beDefinitiveProps.scriptPath}"></script>`;
             }
