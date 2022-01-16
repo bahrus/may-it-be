@@ -63,9 +63,9 @@ ${Object.keys(categories).map(category => {
         })}
 </form>
 <template be-active>
-    <script id=be-noticed/be-noticed.js></script>
-    <script id=be-importing/be-importing.js></script>
-    <script id=be-observant/be-observant.js></script>
+    <script data-version=latest id=be-noticed/be-noticed.js></script>
+    <script data-version=latest id=be-importing/be-importing.js></script>
+    <script data-version=latest id=be-observant/be-observant.js></script>
 </template>
 <be-hive></be-hive>
 `;
