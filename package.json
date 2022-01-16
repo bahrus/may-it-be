@@ -29,7 +29,7 @@
   "dependencies": {
     "be-active": "0.0.14",
     "be-definitive": "0.0.26",
-    "be-exportable": "0.0.5",
+    "be-exportable": "0.0.6",
     "be-ferried": "0.0.24",
     "be-intersectional": "0.0.10",
     "be-loaded": "0.0.32",
