@@ -136,8 +136,9 @@ ${Object.keys(categories).map(category => {
         const mayItBeTokens = [];
         for (const key in mayItBe) {
             const val = mayItBe[key];
-            mayItBeTokens.push(`${key}='${JSON.stringify(val)}'`);
+            mayItBeTokens.push(` ${camelToLisp(key)}='${JSON.stringify(val)}'`);
         }
+        return mayItBeTokens.join('');
     }
     renderStyle(propPresentation) {
         if (propPresentation === undefined) {
