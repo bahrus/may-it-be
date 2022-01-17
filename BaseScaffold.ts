@@ -1,4 +1,4 @@
-import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation} from './types';
+import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation, ActionPresentation} from './types';
 import { IObserveMap } from 'be-observant/types';
 import {html} from './html.js';
 import { camelToLisp } from './camelToLisp.js';
@@ -61,7 +61,7 @@ ${Object.keys(categories).map(category => {
     <fieldset>
         <legend>${category}</legend>
         <table>
-            ${categoryMembers.map(memberKey => this.renderMember(memberKey))}
+            ${categoryMembers.map(memberKey => this.renderProp(memberKey))}
         </table>
         
     </fieldset>
@@ -103,9 +103,18 @@ ${stylePaths.map(path => html`
     }
 
     renderMember(memberKey: ssn){
-        const propPresentation = this.visualHints.propPresentationMap?.[memberKey as string];
-        const propDefault = this.def.config.propDefaults?.[memberKey as string];
-        const propInfo = this.def.config.propInfo?.[memberKey as string];
+        const actionPresentation = this.visualHints.actionPresentationMap?.[memberKey as string];
+        if(actionPresentation !== undefined){
+            return this.renderAction(memberKey, actionPresentation);
+        }else{
+            return this.renderProp(memberKey);
+        }
+    }
+
+    renderProp(propKey: ssn){
+        const propPresentation = this.visualHints.propPresentationMap?.[propKey as string];
+        const propDefault = this.def.config.propDefaults?.[propKey as string];
+        const propInfo = this.def.config.propInfo?.[propKey as string];
         const isInput = !propPresentation?.tagName;
         let tagName = isInput ? 'input' : propPresentation?.tagName;
         let type = 'text';
@@ -145,13 +154,13 @@ ${stylePaths.map(path => html`
             switch(type){
                 case 'checkbox':
                     beObservant = {
-                        checked: '.' + (memberKey as string),
+                        checked: '.' + (propKey as string),
                     }
                     break;
                 case 'text':
                 case 'number':
                     beObservant = {
-                        value: '.' + (memberKey as string),
+                        value: '.' + (propKey as string),
                     }
                     break;
             }
@@ -159,19 +168,19 @@ ${stylePaths.map(path => html`
         }
         
         const value = propDefault;
-        const label = propPresentation?.name ?? memberKey;
+        const label = propPresentation?.name ?? propKey;
 
         return html`
-<tr part="field-container field-container-${memberKey}" class="field-container field-container-${memberKey}"> 
+<tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
     ${isInput ? html`
         <td>
-            <label part="label label-${memberKey}" class=label-${memberKey} for=${memberKey}>${label}:</label>
+            <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
         </td>
         <td>
 
-            <input ${this.renderStyle(propPresentation)} id=${memberKey} itemprop=${memberKey} type=${type} value=${value} ${{
+            <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
                 beNoticed: {
-                    input: {prop: memberKey, vft, parseValAs: parseVal},
+                    input: {prop: propKey, vft, parseValAs: parseVal},
                 },
                 beObservant
             } as mib} ${this.renderMayItBe(propPresentation)}>
@@ -179,8 +188,8 @@ ${stylePaths.map(path => html`
         </td>
     ` : html`
         <td colspan=2>
-            <div><label part="label label-${memberKey}" class=label-${memberKey} for=${memberKey}>${label}:</label></div>
-            ${this.renderCEProp(memberKey, propPresentation)}
+            <div><label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label></div>
+            ${this.renderCEProp(propKey, propPresentation)}
         </td>
     `}
 </tr>
@@ -226,5 +235,14 @@ ${stylePaths.map(path => html`
         return html`
         <${propPresentation.tagName} ${this.renderStyle(propPresentation)} ${this.renderMayItBe(propPresentation)}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
 `; 
+    }
+
+    renderAction(actionKey: ssn, {name}: ActionPresentation){
+        return html`
+        <tr part="action-container action-container-${actionKey}" class="action-container action-container-${actionKey}">
+            <td colspan=2>
+                <button>${name || actionKey}</button>
+            </td>
+        </tr>`;    
     }
 }
