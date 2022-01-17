@@ -19,7 +19,7 @@ export function substrBetween(str: string, start: string, end: string): string {
     return iPos === -1 ? str.substring(start_pos + start.length) :  str.substring(start_pos + start.length, iPos);
 }
 
-export function define({innerHTML, encodeAndWrite, mode, dependencies, beDefinitiveProps}: DefineArgs){
+export function define({innerHTML, encodeAndWrite, mode, dependencies, beDefinitiveProps, standAloneHTML}: DefineArgs){
     if(dependencies === undefined) dependencies = [];
     switch(mode){
         case '-js':{
@@ -43,7 +43,7 @@ encodeAndWrite(js);
                 if(beDefinitiveProps.scriptRef === undefined) beDefinitiveProps.scriptRef = 'a_' + (new Date()).valueOf();
                 scriptRef = html`<script id=${beDefinitiveProps.scriptRef} nomodule be-exportable src="${beDefinitiveProps.scriptPath}"></script>`;
             }
-            const h = html`
+            const h = html`${standAloneHTML}
 <${beDefinitiveProps.config.tagName} t-a-i-l-b ${{
     beDefinitive: beDefinitiveProps
 }}>

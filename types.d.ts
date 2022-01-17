@@ -38,6 +38,7 @@ export interface DefineArgs{
     bundled?: boolean,
     dependencies?: string[],
     scaffoldGenerator?: BaseScaffoldGenerator,
+    standAloneHTML: string,
 }
 
 export interface VisualHints<TProps = any, TEventHandlers = TProps>{
