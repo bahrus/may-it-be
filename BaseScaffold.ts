@@ -80,7 +80,12 @@ ${Object.keys(categories).map(category => {
     }
 </style>
 ${stylePaths.map(path => html`
-<style be-loaded=${path}>
+<style ${{
+    beLoaded: {
+        removeStyle: true,
+        fallback: path,
+    }
+} as mib}>
     form{
         display: none;
     }
