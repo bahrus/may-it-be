@@ -43,6 +43,7 @@ export interface DefineArgs{
 
 export interface VisualHints<TProps = any, TEventHandlers = TProps>{
     propPresentationMap?: Partial<{[key in keyof TProps]: PropPresentation}>,
+    actionPresentationMap?: Partial<{[key in keyof TEventHandlers]: ActionPresentation}>,
     triggerPresentationMap?: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
     fieldSets?: {[key: ssn]: ((keyof TProps) | (keyof TEventHandlers))[]},
     stylePaths?: string[],
@@ -59,8 +60,11 @@ export interface IPresentationElement{
 }
 
 export interface PropPresentation extends IPresentationElement{
-    readOnly?: boolean,
-    editor?: any,
+    //readOnly?: boolean, [TODO]
+    //editor?: any,
+}
+
+export interface ActionPresentation extends IPresentationElement{
 }
 
 export interface EventTriggerPresentation extends IPresentationElement{

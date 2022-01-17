@@ -27,34 +27,41 @@ export class BaseScaffoldGenerator{
                 }
             }
         }
-        const unclassifiedProps = new Set<string>();
+        const unclassifiedMembers = new Set<string>();
         for(const propKey in this.def.config.propDefaults){
             if(!classifiedProps.has(propKey)){
-                unclassifiedProps.add(propKey);
+                unclassifiedMembers.add(propKey);
             }
         }
         const ppm = this.visualHints.propPresentationMap;
         if(ppm !== undefined){
-            for(const propKey in this.visualHints.propPresentationMap){
+            for(const propKey in ppm){
                 if(!classifiedProps.has(propKey)){
-                    unclassifiedProps.add(propKey);
+                    unclassifiedMembers.add(propKey);
                 }
             }
         }
-        if(unclassifiedProps.size > 0){
-            categories.Unclassified = [...unclassifiedProps];
+        const apm = this.visualHints.actionPresentationMap;
+        if(apm !== undefined){
+            for(const actionKey in apm){
+                if(!classifiedProps.has(actionKey)){
+                    unclassifiedMembers.add(actionKey);
+                }
+            }
         }
-
+        if(unclassifiedMembers.size > 0){
+            categories.Unclassified = [...unclassifiedMembers];
+        }
         return html`
 ${this.style}
 <form>
 ${Object.keys(categories).map(category => {
-    const categoryProps = categories[category];
+    const categoryMembers = categories[category];
     return html`
     <fieldset>
         <legend>${category}</legend>
         <table>
-            ${categoryProps.map(propKey => this.renderProp(propKey))}
+            ${categoryMembers.map(memberKey => this.renderMember(memberKey))}
         </table>
         
     </fieldset>
@@ -95,10 +102,10 @@ ${stylePaths.map(path => html`
 
     }
 
-    renderProp(propKey: ssn){
-        const propPresentation = this.visualHints.propPresentationMap?.[propKey as string];
-        const propDefault = this.def.config.propDefaults?.[propKey as string];
-        const propInfo = this.def.config.propInfo?.[propKey as string];
+    renderMember(memberKey: ssn){
+        const propPresentation = this.visualHints.propPresentationMap?.[memberKey as string];
+        const propDefault = this.def.config.propDefaults?.[memberKey as string];
+        const propInfo = this.def.config.propInfo?.[memberKey as string];
         const isInput = !propPresentation?.tagName;
         let tagName = isInput ? 'input' : propPresentation?.tagName;
         let type = 'text';
@@ -138,13 +145,13 @@ ${stylePaths.map(path => html`
             switch(type){
                 case 'checkbox':
                     beObservant = {
-                        checked: '.' + (propKey as string),
+                        checked: '.' + (memberKey as string),
                     }
                     break;
                 case 'text':
                 case 'number':
                     beObservant = {
-                        value: '.' + (propKey as string),
+                        value: '.' + (memberKey as string),
                     }
                     break;
             }
@@ -152,19 +159,19 @@ ${stylePaths.map(path => html`
         }
         
         const value = propDefault;
-        const label = propPresentation?.name ?? propKey;
+        const label = propPresentation?.name ?? memberKey;
 
         return html`
-<tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
+<tr part="field-container field-container-${memberKey}" class="field-container field-container-${memberKey}"> 
     ${isInput ? html`
         <td>
-            <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
+            <label part="label label-${memberKey}" class=label-${memberKey} for=${memberKey}>${label}:</label>
         </td>
         <td>
 
-            <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
+            <input ${this.renderStyle(propPresentation)} id=${memberKey} itemprop=${memberKey} type=${type} value=${value} ${{
                 beNoticed: {
-                    input: {prop: propKey, vft, parseValAs: parseVal},
+                    input: {prop: memberKey, vft, parseValAs: parseVal},
                 },
                 beObservant
             } as mib} ${this.renderMayItBe(propPresentation)}>
@@ -172,8 +179,8 @@ ${stylePaths.map(path => html`
         </td>
     ` : html`
         <td colspan=2>
-            <div><label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label></div>
-            ${this.renderCEProp(propKey, propPresentation)}
+            <div><label part="label label-${memberKey}" class=label-${memberKey} for=${memberKey}>${label}:</label></div>
+            ${this.renderCEProp(memberKey, propPresentation)}
         </td>
     `}
 </tr>
