@@ -61,7 +61,7 @@ ${Object.keys(categories).map(category => {
     <fieldset>
         <legend>${category}</legend>
         <table>
-            ${categoryMembers.map(memberKey => this.renderProp(memberKey))}
+            ${categoryMembers.map(memberKey => this.renderMember(memberKey))}
         </table>
         
     </fieldset>
