@@ -83,6 +83,7 @@ ${stylePaths.map(path => html`
 <style ${{
     beLoaded: {
         removeStyle: true,
+        preloadRef: path,
         fallback: path,
     }
 } as mib}>
