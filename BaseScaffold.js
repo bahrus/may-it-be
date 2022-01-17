@@ -70,6 +70,7 @@ ${Object.keys(categories).map(category => {
 `;
     }
     get style() {
+        const stylePaths = this?.visualHints?.stylePaths || [];
         return html `
 <style>
     :host{
