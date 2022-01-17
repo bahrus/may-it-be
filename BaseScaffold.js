@@ -149,18 +149,26 @@ ${stylePaths.map(path => html `
         const label = propPresentation?.name ?? propKey;
         return html `
 <tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
-    <td>
-        <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
-    </td>
-    <td>
-        ${isInput ? html `
+    ${isInput ? html `
+        <td>
+            <label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label>
+        </td>
+        <td>
+
             <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
             beNoticed: {
                 input: { prop: propKey, vft, parseValAs: parseVal },
             },
             beObservant
-        }} ${this.renderMayItBe(propPresentation)}>` : this.renderCEProp(propKey, propPresentation)}
-    </td>
+        }} ${this.renderMayItBe(propPresentation)}>
+            
+        </td>
+    ` : html `
+        <td colspan=2>
+            <div><label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label></div>
+            ${this.renderCEProp(propKey, propPresentation)}
+        </td>
+    `}
 </tr>
 `;
     }
