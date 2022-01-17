@@ -88,7 +88,7 @@ ${stylePaths.map(path => html`
     }
 } as mib}>
     form{
-        display: none;
+        pointer-events: none;
     }
 </style>
 `)}

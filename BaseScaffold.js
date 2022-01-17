@@ -86,7 +86,7 @@ ${stylePaths.map(path => html `
             }
         }}>
     form{
-        display: none;
+        pointer-events: none;
     }
 </style>
 `)}
