@@ -79,7 +79,7 @@ ${Object.keys(categories).map(category => {
         display: block;
     }
 </style>
-${this.visualHints!.stylePaths!.map(path => html`
+${stylePaths.map(path => html`
 <style be-loaded=${path}>
     form{
         display: none;
