@@ -27,7 +27,7 @@
     "package-check": "package-check"
   },
   "dependencies": {
-    "be-active": "0.0.14",
+    "be-active": "0.0.15",
     "be-consensual": "0.0.3",
     "be-definitive": "0.0.26",
     "be-exportable": "0.0.6",
