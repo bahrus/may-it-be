@@ -8,7 +8,9 @@ export class BaseScaffoldGenerator {
     static generateFrom(def, visualHints = {}) {
         return new BaseScaffoldGenerator(def, visualHints);
     }
-    constructor(def, visualHints = {}) {
+    constructor(def, visualHints = {
+        stylePaths: []
+    }) {
         this.def = def;
         this.visualHints = visualHints;
     }
@@ -43,11 +45,7 @@ export class BaseScaffoldGenerator {
             categories.Unclassified = [...unclassifiedProps];
         }
         return html `
-<style>
-    :host{
-        display: block;
-    }
-</style>
+${this.style}
 <form>
 ${Object.keys(categories).map(category => {
             const categoryProps = categories[category];
@@ -66,9 +64,26 @@ ${Object.keys(categories).map(category => {
     <script data-version=latest id=be-noticed/be-noticed.js></script>
     <script data-version=latest id=be-importing/be-importing.js></script>
     <script data-version=latest id=be-observant/be-observant.js></script>
+    <script data-version=latest id=be-loaded/be-loaded.js></script>
 </template>
 <be-hive></be-hive>
 `;
+    }
+    get style() {
+        return html `
+<style>
+    :host{
+        display: block;
+    }
+</style>
+${this.visualHints.stylePaths.map(path => html `
+<style be-loaded=${path}>
+    form{
+        display: none;
+    }
+</style>
+`)}
+        `;
     }
     renderProp(propKey) {
         const propPresentation = this.visualHints.propPresentationMap?.[propKey];

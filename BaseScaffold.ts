@@ -10,7 +10,9 @@ export class BaseScaffoldGenerator{
     static generateFrom(def: BeDefinitiveVirtualProps, visualHints: VisualHints = {}){
         return new BaseScaffoldGenerator(def, visualHints);
     }
-    constructor(public def: BeDefinitiveVirtualProps, public visualHints: VisualHints = {}){}
+    constructor(public def: BeDefinitiveVirtualProps, public visualHints: VisualHints = {
+        stylePaths: []
+    }){}
 
     get html(){
         const {fieldSets} = this.visualHints;
@@ -42,12 +44,9 @@ export class BaseScaffoldGenerator{
         if(unclassifiedProps.size > 0){
             categories.Unclassified = [...unclassifiedProps];
         }
+
         return html`
-<style>
-    :host{
-        display: block;
-    }
-</style>
+${this.style}
 <form>
 ${Object.keys(categories).map(category => {
     const categoryProps = categories[category];
@@ -66,9 +65,28 @@ ${Object.keys(categories).map(category => {
     <script data-version=latest id=be-noticed/be-noticed.js></script>
     <script data-version=latest id=be-importing/be-importing.js></script>
     <script data-version=latest id=be-observant/be-observant.js></script>
+    <script data-version=latest id=be-loaded/be-loaded.js></script>
 </template>
 <be-hive></be-hive>
 `;
+    }
+
+    get style(){
+        return html`
+<style>
+    :host{
+        display: block;
+    }
+</style>
+${this.visualHints!.stylePaths!.map(path => html`
+<style be-loaded=${path}>
+    form{
+        display: none;
+    }
+</style>
+`)}
+        `;
+
     }
 
     renderProp(propKey: ssn){
