@@ -37,8 +37,8 @@ export interface DefineArgs{
     mode: '-js' | '-html' | '-dfn',
     bundled?: boolean,
     dependencies?: string[],
+    globalStylePaths?: string[],
     scaffoldGenerator?: BaseScaffoldGenerator,
-    standAloneHTML: string,
 }
 
 export interface VisualHints<TProps = any, TEventHandlers = TProps>{

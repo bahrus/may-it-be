@@ -16,9 +16,11 @@ export function substrBetween(str, start, end) {
     const iPos = str.indexOf(end, start_pos + start.length);
     return iPos === -1 ? str.substring(start_pos + start.length) : str.substring(start_pos + start.length, iPos);
 }
-export function define({ innerHTML, encodeAndWrite, mode, dependencies, beDefinitiveProps, standAloneHTML }) {
+export function define({ innerHTML, encodeAndWrite, mode, dependencies, globalStylePaths, beDefinitiveProps }) {
     if (dependencies === undefined)
         dependencies = [];
+    if (globalStylePaths === undefined)
+        globalStylePaths = [];
     switch (mode) {
         case '-js':
             {
@@ -43,7 +45,7 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
                         beDefinitiveProps.scriptRef = 'a_' + (new Date()).valueOf();
                     scriptRef = html `<script id=${beDefinitiveProps.scriptRef} nomodule be-exportable src="${beDefinitiveProps.scriptPath}"></script>`;
                 }
-                const h = html `${standAloneHTML}
+                const h = html `
 <${beDefinitiveProps.config.tagName} t-a-i-l-b ${{
                     beDefinitive: beDefinitiveProps
                 }}>
@@ -53,6 +55,7 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
             <script data-version=latest id="be-importing/be-importing.js"></script>
             <script data-version=latest id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
             ${dependencies.map(d => html `<script data-when=be-importing id="${d}"></script>`).join('\n')}
+            ${globalStylePaths.map(p => html `<link rel="stylesheet" href="${p}">`).join('\n')}
         </template>
         ${innerHTML}
     </template>
