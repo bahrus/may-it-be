@@ -39,7 +39,7 @@ encodeAndWrite(js);
             let beExportable = '';
             if(beDefinitiveProps.scriptPath !== undefined){
                 beExportable = html`
-<script data-version=latest id="be-exportable/be-exportable.js"></script>`;
+<script data-version=latest data-when=be-importing id="be-exportable/be-exportable.js"></script>`;
                 if(beDefinitiveProps.scriptRef === undefined) beDefinitiveProps.scriptRef = 'a_' + (new Date()).valueOf();
                 scriptRef = html`<script id=${beDefinitiveProps.scriptRef} nomodule be-exportable src="${beDefinitiveProps.scriptPath}"></script>`;
             }
@@ -50,8 +50,9 @@ encodeAndWrite(js);
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script id="be-definitive/be-definitive.js"></script>${beExportable}
-            ${dependencies.map(d => html`<script id="${d}"></script>`).join('\n')}
+            <script data-version=latest id="be-importing/be-importing.js"></script>
+            <script data-version=latest id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
+            ${dependencies.map(d => html`<script data-when=be-importing id="${d}"></script>`).join('\n')}
         </template>
         ${innerHTML}
     </template>
