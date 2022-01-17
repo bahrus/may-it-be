@@ -64,7 +64,7 @@ ${Object.keys(categories).map(category => {
     <script data-version=latest id=be-noticed/be-noticed.js></script>
     <script data-version=latest id=be-importing/be-importing.js></script>
     <script data-version=latest id=be-observant/be-observant.js></script>
-    <script data-version=latest id=be-loaded/be-loaded.js></script>
+    <script data-version=0.0.34 id=be-loaded/be-loaded.js></script>
 </template>
 <be-hive></be-hive>
 `;
