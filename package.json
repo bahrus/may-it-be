@@ -31,13 +31,13 @@
     "be-consensual": "0.0.3",
     "be-definitive": "0.0.26",
     "be-exportable": "0.0.6",
-    "be-ferried": "0.0.24",
+    "be-ferried": "0.0.25",
     "be-intersectional": "0.0.10",
-    "be-loaded": "0.0.32",
+    "be-loaded": "0.0.34",
     "be-metamorphic": "0.0.11",
     "be-noticed": "0.0.45",
     "be-observant": "0.0.74",
-    "be-switched": "0.0.49",
+    "be-switched": "0.0.53",
     "be-transformative": "0.0.23"
   },
   "devDependencies": {
