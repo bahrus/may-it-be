@@ -172,7 +172,7 @@ ${stylePaths.map(path => html `
         </td>
         <td>
 
-            <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value=${value} ${{
+            <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value="${value}" ${{
             beNoticed: {
                 input: { prop: propKey, vft, parseValAs: parseVal },
             },
