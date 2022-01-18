@@ -241,7 +241,7 @@ ${stylePaths.map(path => html`
         return html`
         <tr part="action-container action-container-${actionKey}" class="action-container action-container-${actionKey}">
             <td colspan=2>
-                <button ${{
+                <button type=button ${{
                     beNoticed: {
                         click: {fn: actionKey},
                     }
