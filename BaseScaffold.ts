@@ -188,8 +188,10 @@ ${stylePaths.map(path => html`
         </td>
     ` : html`
         <td colspan=2>
-            <div><label part="label label-${propKey}" class=label-${propKey} for=${propKey}>${label}:</label></div>
-            ${this.renderCEProp(propKey, propPresentation)}
+            <fieldset>
+                <legend>${label}</legend>
+                ${this.renderCEProp(propKey, propPresentation)}
+            </fieldset>
         </td>
     `}
 </tr>
