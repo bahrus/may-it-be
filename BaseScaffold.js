@@ -230,7 +230,11 @@ ${stylePaths.map(path => html `
         return html `
         <tr part="action-container action-container-${actionKey}" class="action-container action-container-${actionKey}">
             <td colspan=2>
-                <button>${name || actionKey}</button>
+                <button ${{
+            beNoticed: {
+                click: { fn: actionKey },
+            }
+        }}>${name || actionKey}</button>
             </td>
         </tr>`;
     }
