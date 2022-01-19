@@ -1,7 +1,8 @@
-import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation, ActionPresentation} from './types';
+import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation, ActionPresentation, MemberPresentation} from './types';
 import { IObserveMap } from 'be-observant/types';
 import {html} from './html.js';
 import { camelToLisp } from './camelToLisp.js';
+import { INotifyMap } from '../be-noticed/types';
 export { camelToLisp };
 export {html};
 export {VisualHints, ssn};
@@ -199,7 +200,7 @@ ${stylePaths.map(path => html`
 
     }
 
-    renderMayItBe(propPresentation: PropPresentation | undefined){
+    renderMayItBe(propPresentation: MemberPresentation | undefined){
         if(propPresentation === undefined){
             return '';
         }
@@ -239,15 +240,17 @@ ${stylePaths.map(path => html`
 `; 
     }
 
-    renderAction(actionKey: ssn, {name}: ActionPresentation){
+    renderAction(actionKey: ssn, actionPresentation: ActionPresentation){
+        const {name, mayItBe} = actionPresentation;
+        const beNoticed = mayItBe?.beNoticed || {
+            click: {fn: actionKey},
+        } as INotifyMap;
+        const mayItBeExt = {...mayItBe, beNoticed};
+        const actionPresentationExt = {...actionPresentation, mayItBe: mayItBeExt}; 
         return html`
         <tr part="action-container action-container-${actionKey}" class="action-container action-container-${actionKey}">
             <td colspan=2>
-                <button type=button ${{
-                    beNoticed: {
-                        click: {fn: actionKey},
-                    }
-                } as mib}>${name || actionKey}</button>
+                <button type=button ${this.renderMayItBe(actionPresentationExt)}}>${name || actionKey}</button>
             </td>
         </tr>`;    
     }

@@ -228,15 +228,17 @@ ${stylePaths.map(path => html `
         <${propPresentation.tagName} ${this.renderStyle(propPresentation)} ${this.renderMayItBe(propPresentation)}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
 `;
     }
-    renderAction(actionKey, { name }) {
+    renderAction(actionKey, actionPresentation) {
+        const { name, mayItBe } = actionPresentation;
+        const beNoticed = mayItBe?.beNoticed || {
+            click: { fn: actionKey },
+        };
+        const mayItBeExt = { ...mayItBe, beNoticed };
+        const actionPresentationExt = { ...actionPresentation, mayItBe: mayItBeExt };
         return html `
         <tr part="action-container action-container-${actionKey}" class="action-container action-container-${actionKey}">
             <td colspan=2>
-                <button type=button ${{
-            beNoticed: {
-                click: { fn: actionKey },
-            }
-        }}>${name || actionKey}</button>
+                <button type=button ${this.renderMayItBe(actionPresentationExt)}}>${name || actionKey}</button>
             </td>
         </tr>`;
     }

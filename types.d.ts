@@ -67,6 +67,8 @@ export interface PropPresentation extends IPresentationElement{
 export interface ActionPresentation extends IPresentationElement{
 }
 
+export type MemberPresentation = PropPresentation | ActionPresentation;
+
 export interface EventTriggerPresentation extends IPresentationElement{
     name: string,
     description: string,
