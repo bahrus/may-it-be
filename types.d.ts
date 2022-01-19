@@ -26,6 +26,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beNoticed?: INotifyMap<Self, Props, Actions>,
     beObservant?: IObserveMap<Self, Props, Actions>,
     beSwitched?: BeSwitchedVirtualProps,
+    beTransactional?: any,
     beTransformative?: any,
     
 }
