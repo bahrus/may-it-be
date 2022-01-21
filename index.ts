@@ -29,7 +29,7 @@ export function define({innerHTML, encodeAndWrite, mode, dependencies, globalSty
             }}>${innerHTML}</template>`;
             const js = 
 `import('be-definitive@0.0.26/be-definitive.js');
-import('be-active@0.0.14/be-active.js');
+import('be-active@0.0.16/be-active.js');
 ${dependencies.map(d => `import('${d}');`).join('\n')}
 document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
 encodeAndWrite(js);
@@ -51,7 +51,7 @@ encodeAndWrite(js);
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script data-version=0.0.3 id="be-importing/be-importing.js"></script>
+            <script data-version=0.0.4 id="be-importing/be-importing.js"></script>
             <script data-version=latest id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
             ${dependencies.map(d => html`<script data-when=be-importing id="${d}"></script>`).join('\n')}
             ${globalStylePaths.map(p => html`<link rel="stylesheet" href="${p}">`).join('\n')}
@@ -63,7 +63,7 @@ ${scriptRef}
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active@0.0.15/be-active.js');
+            import('https://esm.run/be-active@0.0.16/be-active.js');
         });
     }
 </script>

@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/*.js": {"when": "$(basename).ts"},
+        "**/*.mjs": {"when": "$(basename).mts"},
+    }
+}
