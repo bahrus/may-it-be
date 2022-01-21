@@ -28,8 +28,8 @@ export function define({innerHTML, encodeAndWrite, mode, dependencies, globalSty
                 beDefinitive: beDefinitiveProps
             }}>${innerHTML}</template>`;
             const js = 
-`import('be-definitive@0.0.26/be-definitive.js');
-import('be-active@0.0.16/be-active.js');
+`import('be-definitive/be-definitive.js');
+import('be-active/be-active.js');
 ${dependencies.map(d => `import('${d}');`).join('\n')}
 document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
 encodeAndWrite(js);
@@ -40,7 +40,7 @@ encodeAndWrite(js);
             let beExportable = '';
             if(beDefinitiveProps.scriptPath !== undefined){
                 beExportable = html`
-<script data-version=0.0.7 data-when=be-importing id="be-exportable/be-exportable.js"></script>`;
+<script data-version=0.0.8 data-when=be-importing id="be-exportable/be-exportable.js"></script>`;
                 if(beDefinitiveProps.scriptRef === undefined) beDefinitiveProps.scriptRef = 'a_' + (new Date()).valueOf();
                 scriptRef = html`<script id=${beDefinitiveProps.scriptRef} nomodule be-exportable src="${beDefinitiveProps.scriptPath}"></script>`;
             }
@@ -52,7 +52,7 @@ encodeAndWrite(js);
     <template shadowroot="open">
         <template be-active>
             <script data-version=0.0.4 id="be-importing/be-importing.js"></script>
-            <script data-version=latest id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
+            <script data-version=0.0.27 id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
             ${dependencies.map(d => html`<script data-when=be-importing id="${d}"></script>`).join('\n')}
             ${globalStylePaths.map(p => html`<link rel="stylesheet" href="${p}">`).join('\n')}
         </template>
