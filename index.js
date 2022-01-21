@@ -27,8 +27,8 @@ export function define({ innerHTML, encodeAndWrite, mode, dependencies, globalSt
                 const mainTemplate = html `<template ${{
                     beDefinitive: beDefinitiveProps
                 }}>${innerHTML}</template>`;
-                const js = `import('be-definitive/be-definitive.js');
-import('be-active/be-active.js');
+                const js = `import('be-definitive@0.0.26/be-definitive.js');
+import('be-active@0.0.14/be-active.js');
 ${dependencies.map(d => `import('${d}');`).join('\n')}
 document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
                 encodeAndWrite(js);

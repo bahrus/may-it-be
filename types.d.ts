@@ -18,6 +18,7 @@ export type ssn = string | symbol | number;
 export interface MayItBe<Self = any, Props = any, Actions = any>{
     beActive?: BeActiveVirtualProps,
     beConsensual?: BeConsensualVirtualProps,
+    beConsensualMember?: boolean,
     beDefinitive?: BeDefinitiveVirtualProps<Props, Actions>,
     beExportable?: BeExportableVirtualProps,
     beFerried?: BeFerriedVirtualProps,
