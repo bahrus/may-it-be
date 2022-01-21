@@ -70,7 +70,7 @@ ${Object.keys(categories).map(category => {
 </form>
 <template be-active>
     <script data-version=0.0.34 id=be-loaded/be-loaded.js data-when=be-importing ></script>
-    <script data-version=0.0.79 id=be-observant/be-observant.js data-when=be-loaded ></script>
+    <script data-version=0.0.80 id=be-observant/be-observant.js data-when=be-loaded ></script>
     <script data-version=0.0.45 id=be-noticed/be-noticed.js data-when=be-observant ></script>
 </template>
 <be-hive></be-hive>
