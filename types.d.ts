@@ -12,6 +12,7 @@ export { BeDefinitiveVirtualProps} from 'be-definitive/types';
 import { BaseScaffoldGenerator } from './BaseScaffold';
 import { BeExportableVirtualProps} from 'be-exportable/types';
 import { BeConsensualVirtualProps } from 'be-consensual/types';
+import { BeLookingUpVirtualProps } from 'be-looking-up/types';
 
 export type ssn = string | symbol | number;
 
@@ -24,6 +25,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beFerried?: BeFerriedVirtualProps,
     beIntersectional?: BeIntersectionalVirtualProps,
     beLoaded?: BeLoadedVirtualProps,
+    beLookingUp?: BeLookingUpVirtualProps,
     beNoticed?: INotifyMap<Self, Props, Actions>,
     beObservant?: IObserveMap<Self, Props, Actions>,
     beSwitched?: BeSwitchedVirtualProps,
