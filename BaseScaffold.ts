@@ -179,7 +179,7 @@ ${stylePaths.map(path => html`
         </td>
         <td>
 
-            <input ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value="${value}" ${{
+            <input ${this.renderValidation(propPresentation)} ${this.renderStyle(propPresentation)} id=${propKey} itemprop=${propKey} type=${type} value="${value}" ${{
                 beNoticed: {
                     input: {prop: propKey, vft, parseValAs: parseVal},
                 },
@@ -238,6 +238,21 @@ ${stylePaths.map(path => html`
         return html`
         <${propPresentation.tagName} ${this.renderStyle(propPresentation)} ${this.renderMayItBe(propPresentation)}  id=${propKey}  ${ssr} itemprop=${propKey}></${propPresentation.tagName}>
 `; 
+    }
+
+    renderValidation(propPresentation: PropPresentation | undefined){
+        if(propPresentation === undefined){
+            return '';
+        }
+        const {max, min} = propPresentation;
+        const attrs: string[] = [];
+        if(max !== undefined){
+            attrs.push(`max='${max}'`);
+        }
+        if(min !== undefined){
+            attrs.push(`min='${min}'`);
+        }
+        return attrs.join(' ');
     }
 
     renderAction(actionKey: ssn, actionPresentation: ActionPresentation){

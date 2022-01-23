@@ -61,6 +61,8 @@ export interface IPresentationElement{
     ssrPath?: string,
     style?: Partial<CSSStyleDeclaration>,
     mayItBe?: MayItBe,
+    max?: number,
+    min?: number,
 }
 
 export interface PropPresentation extends IPresentationElement{
