@@ -29,7 +29,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beLookingUp?: BeLookingUpVirtualProps,
     beNoticed?: INotifyMap<Self, Props, Actions>,
     beObservant?: IObserveMap<Self, Props, Actions>,
-    beReformable?: BeReformableVirtualProps,
+    beReformable?: BeReformableVirtualProps & Partial<HTMLFormElement>,
     beSwitched?: BeSwitchedVirtualProps,
     beTransactional?: any,
     beTransformative?: any,
