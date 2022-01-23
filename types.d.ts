@@ -51,6 +51,7 @@ export interface VisualHints<TProps = any, TEventHandlers = TProps>{
     triggerPresentationMap?: Partial<{[key in keyof TEventHandlers]: EventTriggerPresentation}>,
     fieldSets?: {[key: ssn]: ((keyof TProps) | (keyof TEventHandlers))[]},
     stylePaths?: string[],
+    mayItBe?: MayItBe<HTMLFormElement, TProps, TEventHandlers>,
 }
 
 export interface IPresentationElement{

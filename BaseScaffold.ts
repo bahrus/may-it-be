@@ -55,7 +55,7 @@ export class BaseScaffoldGenerator{
         }
         return html`
 ${this.style}
-<form>
+<form ${this.visualHints.mayItBe}>
 ${Object.keys(categories).map(category => {
     const categoryMembers = categories[category];
     return html`
