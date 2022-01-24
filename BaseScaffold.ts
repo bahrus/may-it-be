@@ -66,9 +66,9 @@ ${Object.keys(categories).map(category => {
         </table>
         
     </fieldset>
-    ${Array.from(unclassifiedMembers).map(memberKey => this.renderMember(memberKey))}
     `;
 })}
+${Array.from(unclassifiedMembers).map(memberKey => this.renderMember(memberKey))}
 </form>
 <template be-active>
     <script data-version=0.0.36 id=be-loaded/be-loaded.js data-when=be-importing ></script>
