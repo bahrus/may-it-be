@@ -49,9 +49,9 @@ export class BaseScaffoldGenerator {
                 }
             }
         }
-        if (unclassifiedMembers.size > 0) {
-            categories.Unclassified = [...unclassifiedMembers];
-        }
+        // if(unclassifiedMembers.size > 0){
+        //     categories.Unclassified = [...unclassifiedMembers];
+        // }
         return html `
 ${this.style}
 <form ${this.visualHints.mayItBe}>
@@ -65,13 +65,14 @@ ${Object.keys(categories).map(category => {
         </table>
         
     </fieldset>
+    ${Array.from(unclassifiedMembers).map(memberKey => this.renderMember(memberKey))}
     `;
         })}
 </form>
 <template be-active>
-    <script data-version=0.0.35 id=be-loaded/be-loaded.js data-when=be-importing ></script>
-    <script data-version=0.0.81 id=be-observant/be-observant.js data-when=be-loaded ></script>
-    <script data-version=0.0.46 id=be-noticed/be-noticed.js data-when=be-observant ></script>
+    <script data-version=0.0.36 id=be-loaded/be-loaded.js data-when=be-importing ></script>
+    <script data-version=0.0.88 id=be-observant/be-observant.js data-when=be-loaded ></script>
+    <script data-version=0.0.47 id=be-noticed/be-noticed.js data-when=be-observant ></script>
 </template>
 <be-hive></be-hive>
 `;
