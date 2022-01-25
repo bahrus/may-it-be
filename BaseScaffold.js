@@ -1,5 +1,6 @@
 import { html } from './html.js';
 import { camelToLisp } from './camelToLisp.js';
+import { camelToLabel } from './camelToLabel.js';
 export { camelToLisp };
 export { html };
 export class BaseScaffoldGenerator {
@@ -164,7 +165,7 @@ ${stylePaths.map(path => html `
             }
         }
         const value = propDefault;
-        const label = propPresentation?.name ?? propKey;
+        const label = propPresentation?.name ?? camelToLabel(propKey.toString());
         return html `
 <tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
     ${isInput ? html `

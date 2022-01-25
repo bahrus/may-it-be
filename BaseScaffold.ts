@@ -2,6 +2,7 @@ import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresenta
 import { IObserveMap } from 'be-observant/types';
 import {html} from './html.js';
 import { camelToLisp } from './camelToLisp.js';
+import { camelToLabel } from './camelToLabel.js';
 import { INotifyMap } from '../be-noticed/types';
 export { camelToLisp };
 export {html};
@@ -170,7 +171,7 @@ ${stylePaths.map(path => html`
         }
         
         const value = propDefault;
-        const label = propPresentation?.name ?? propKey;
+        const label = propPresentation?.name ?? camelToLabel(propKey.toString());
 
         return html`
 <tr part="field-container field-container-${propKey}" class="field-container field-container-${propKey}"> 
