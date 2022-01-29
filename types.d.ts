@@ -63,11 +63,13 @@ export interface IPresentationElement{
     description?: string,
     inputType?: string,
     tagName?: string,
+    innerHTML?: string,
     style?: Partial<CSSStyleDeclaration>,
     mayItBe?: MayItBe,
     max?: number,
     min?: number,
 }
+
 
 export interface PropPresentation extends IPresentationElement{
     //readOnly?: boolean, [TODO]
