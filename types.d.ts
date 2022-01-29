@@ -15,10 +15,16 @@ import { BeConsensualVirtualProps } from 'be-consensual/types';
 import { BeLookingUpVirtualProps } from 'be-looking-up/types';
 import { BeReformableVirtualProps } from 'be-reformable/types';
 import { BeImportingVirtualProps } from 'be-importing/types';
+import { BeBasedVirtualProps } from 'be-based/types';
 
 export type ssn = string | symbol | number;
 
-export interface MayItBe<Self = any, Props = any, Actions = any>{
+// May it be decorators that make sense when applied to a DOM Fragment.
+export interface MayItBeTransformable<Self = any, Props = any, Actions = any> {
+    beBased?: BeBasedVirtualProps;
+}
+
+export interface MayItBe<Self = any, Props = any, Actions = any> extends MayItBeTransformable<Self, Props, Actions> {
     beActive?: BeActiveVirtualProps,
     beConsensual?: BeConsensualVirtualProps,
     beConsensualMember?: boolean,

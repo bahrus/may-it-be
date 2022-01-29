@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "be-active": "0.0.17",
+    "be-based": "0.0.1",
     "be-consensual": "0.0.11",
     "be-definitive": "0.0.30",
     "be-exportable": "0.0.9",
