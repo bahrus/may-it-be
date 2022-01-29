@@ -224,7 +224,7 @@ ${stylePaths.map(path => html `
     }
     renderCEProp(propKey, propPresentation) {
         //TODO:  distinguish between form associated custom elements (with label support?)
-        return html `<${propPresentation.tagName} ${this.renderStyle(propPresentation)} ${this.renderMayItBe(propPresentation)}  id=${propKey} itemprop=${propKey}></${propPresentation.tagName}>`;
+        return html `<${propPresentation.tagName} ${this.renderStyle(propPresentation)} ${this.renderMayItBe(propPresentation)}  id=${propKey} itemprop=${propKey}>${propPresentation.innerHTML}</${propPresentation.tagName}>`;
     }
     renderValidation(propPresentation) {
         if (propPresentation === undefined) {
