@@ -14,6 +14,7 @@ import { BeExportableVirtualProps} from 'be-exportable/types';
 import { BeConsensualVirtualProps } from 'be-consensual/types';
 import { BeLookingUpVirtualProps } from 'be-looking-up/types';
 import { BeReformableVirtualProps } from 'be-reformable/types';
+import { BeImportingVirtualProps } from 'be-importing/types';
 
 export type ssn = string | symbol | number;
 
@@ -24,6 +25,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any>{
     beDefinitive?: BeDefinitiveVirtualProps<Props, Actions>,
     beExportable?: BeExportableVirtualProps,
     beFerried?: BeFerriedVirtualProps,
+    beImporting?: BeImportingVirtualProps,
     beIntersectional?: BeIntersectionalVirtualProps,
     beLoaded?: BeLoadedVirtualProps,
     beLookingUp?: BeLookingUpVirtualProps,
@@ -61,7 +63,6 @@ export interface IPresentationElement{
     description?: string,
     inputType?: string,
     tagName?: string,
-    ssrPath?: string,
     style?: Partial<CSSStyleDeclaration>,
     mayItBe?: MayItBe,
     max?: number,
