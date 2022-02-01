@@ -40,7 +40,7 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
                 let beExportable = '';
                 if (beDefinitiveProps.scriptPath !== undefined) {
                     beExportable = html `
-<script data-version=0.0.8 id="be-exportable/be-exportable.js" data-when=be-importing ></script>`;
+<script data-version=0.0.10 id="be-exportable/be-exportable.js" data-when=be-importing ></script>`;
                     if (beDefinitiveProps.scriptRef === undefined)
                         beDefinitiveProps.scriptRef = 'a_' + (new Date()).valueOf();
                     scriptRef = html `<script id=${beDefinitiveProps.scriptRef} nomodule be-exportable src="${beDefinitiveProps.scriptPath}"></script>`;
@@ -52,8 +52,8 @@ document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
     <!---->
     <template shadowroot="open">
         <template be-active>
-            <script data-version=0.0.13 id="be-importing/be-importing.js"></script>
-            <script data-version=0.0.30 id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
+            <script data-version=0.0.14 id="be-importing/be-importing.js"></script>
+            <script data-version=0.0.31 id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
             ${dependencies.map(d => html `<script data-when=be-importing id="${d}"></script>`).join('\n')}
             ${globalStylePaths.map(p => html `<link rel="stylesheet" href="${p}">`).join('\n')}
         </template>
@@ -64,7 +64,7 @@ ${scriptRef}
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active@0.0.17/be-active.js');
+            import('https://esm.run/be-active@0.0.18/be-active.js');
         });
     }
 </script>
