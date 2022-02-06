@@ -1,16 +1,29 @@
 import {DefineArgs} from './types';
 import {html} from './html.js';
 export {html} from './html.js';
+import {Action, TemplMgmtProps} from 'trans-render/lib/types';
 
-export const doInitTransform = {
+// export const doInitTransform = {
+//     cloneTemplate: {
+//         ifAllOf: ['mainTemplate'],
+//         ifKeyIn: ['noshadow', 'waitToInit']
+//     },
+//     doInitTransform: {
+//         ifAllOf: ['clonedTemplate'],
+//     }
+// }
+
+export const beTransformed = {
     cloneTemplate: {
         ifAllOf: ['mainTemplate'],
         ifKeyIn: ['noshadow', 'waitToInit']
-    },
-    doInitTransform: {
-        ifAllOf: ['clonedTemplate'],
-    }
-}
+    } as Action<TemplMgmtProps>,
+    doTemplMount: {
+        ifAllOf: ['clonedTemplate', 'transform'],
+        ifKeyIn: ['waitToInit'],
+        async: true,
+    } as Action<TemplMgmtProps>,
+};
 
 export function substrBetween(str: string, start: string, end: string): string {
     const start_pos = str.indexOf(start);

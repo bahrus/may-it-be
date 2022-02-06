@@ -1,13 +1,24 @@
 import { html } from './html.js';
 export { html } from './html.js';
-export const doInitTransform = {
+// export const doInitTransform = {
+//     cloneTemplate: {
+//         ifAllOf: ['mainTemplate'],
+//         ifKeyIn: ['noshadow', 'waitToInit']
+//     },
+//     doInitTransform: {
+//         ifAllOf: ['clonedTemplate'],
+//     }
+// }
+export const beTransformed = {
     cloneTemplate: {
         ifAllOf: ['mainTemplate'],
         ifKeyIn: ['noshadow', 'waitToInit']
     },
-    doInitTransform: {
-        ifAllOf: ['clonedTemplate'],
-    }
+    doTemplMount: {
+        ifAllOf: ['clonedTemplate', 'transform'],
+        ifKeyIn: ['waitToInit'],
+        async: true,
+    },
 };
 export function substrBetween(str, start, end) {
     const start_pos = str.indexOf(start);
