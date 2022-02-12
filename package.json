@@ -27,23 +27,23 @@
     "package-check": "package-check"
   },
   "dependencies": {
-    "be-active": "0.0.18",
-    "be-based": "0.0.7",
+    "be-active": "0.0.20",
+    "be-based": "0.0.8",
     "be-consensual": "0.0.12",
-    "be-definitive": "0.0.32",
+    "be-definitive": "0.0.35",
     "be-exportable": "0.0.10",
-    "be-ferried": "0.0.28",
-    "be-importing": "0.0.16",
-    "be-intersectional": "0.0.13",
-    "be-loaded": "0.0.44",
-    "be-looking-up": "0.0.6",
-    "be-metamorphic": "0.0.14",
-    "be-noticed": "0.0.48",
-    "be-observant": "0.0.91",
-    "be-reformable": "0.0.28",
-    "be-switched": "0.0.57",
-    "be-transactional": "0.0.6",
-    "be-transformative": "0.0.26"
+    "be-ferried": "0.0.29",
+    "be-importing": "0.0.17",
+    "be-intersectional": "0.0.14",
+    "be-loaded": "0.0.46",
+    "be-looking-up": "0.0.7",
+    "be-metamorphic": "0.0.15",
+    "be-noticed": "0.0.50",
+    "be-observant": "0.0.93",
+    "be-reformable": "0.0.29",
+    "be-switched": "0.0.58",
+    "be-transactional": "0.0.7",
+    "be-transformative": "0.0.27"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2"
