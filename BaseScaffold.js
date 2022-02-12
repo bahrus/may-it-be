@@ -71,9 +71,9 @@ ${Object.keys(categories).map(category => {
 ${Array.from(unclassifiedMembers).map(memberKey => this.renderMember(memberKey))}
 </form>
 <template be-active>
-    <script data-version=0.0.44 id=be-loaded/be-loaded.js data-when=be-importing ></script>
-    <script data-version=0.0.89 id=be-observant/be-observant.js data-when=be-loaded ></script>
-    <script data-version=0.0.48 id=be-noticed/be-noticed.js data-when=be-observant ></script>
+    <script data-version=0.0.46 id=be-loaded/be-loaded.js data-when=be-importing ></script>
+    <script data-version=0.0.93 id=be-observant/be-observant.js data-when=be-loaded ></script>
+    <script data-version=0.0.50 id=be-noticed/be-noticed.js data-when=be-observant ></script>
 </template>
 <be-hive></be-hive>
 `;
