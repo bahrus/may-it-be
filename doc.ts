@@ -30,7 +30,7 @@ export class CustomElementManifestGenerator{
             if(tagName === undefined) continue;
             const {type} = tagName;
             const e = tagName.enum;
-            if(e === undefined || type === 'string' || e.length === 0) continue;
+            if(e === undefined || type !== 'string' || e.length === 0) continue;
             const firstE = e[0] as string;
             const module: CustomElementDeclaration = {
                 name: firstE,

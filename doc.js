@@ -32,7 +32,7 @@ export class CustomElementManifestGenerator {
                 continue;
             const { type } = tagName;
             const e = tagName.enum;
-            if (e === undefined || type === 'string' || e.length === 0)
+            if (e === undefined || type !== 'string' || e.length === 0)
                 continue;
             const firstE = e[0];
             const module = {
