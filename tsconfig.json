@@ -9,7 +9,9 @@
 		"strict": true,
 	},
 	"files":[
-		"index.ts"
+		"index.ts",
+		"doc.ts",
+		"demo/schemaTest.ts"
 	],
 	"exclude":[
 		"node_modules"

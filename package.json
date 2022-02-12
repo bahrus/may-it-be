@@ -46,7 +46,9 @@
     "be-transformative": "0.0.27"
   },
   "devDependencies": {
-    "@skypack/package-check": "0.2.2"
+    "@skypack/package-check": "0.2.2",
+    "custom-elements-manifest": "1.0.0",
+    "@types/json-schema": "7.0.9"
   },
   "repository": {
     "type": "git",

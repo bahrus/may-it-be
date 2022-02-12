@@ -16,6 +16,8 @@ import { BeLookingUpVirtualProps } from 'be-looking-up/types';
 import { BeReformableVirtualProps } from 'be-reformable/types';
 import { BeImportingVirtualProps } from 'be-importing/types';
 import { BeBasedVirtualProps } from 'be-based/types';
+import { Event, Slot, CssPart, CssCustomProperty, PropertyLike } from 'node_modules/custom-elements-manifest/schema';
+import { Action, PropInfo } from 'trans-render/lib/types';
 
 export type ssn = string | symbol | number;
 
@@ -91,4 +93,21 @@ export interface EventTriggerPresentation extends IPresentationElement{
     name: string,
     description: string,
     category: string
+}
+
+// export interface SimpleCustomElementDef {
+//     tagName: string;
+//     events?: Event[];
+//     props?: any[];
+//     slots?: Slot[];
+//     cssParts?: CssPart[];
+//     cssProperties?: CssCustomProperty[];
+// }
+
+export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
+    tagName: string;
+    cssParts?: {[key: string]: string};
+    props?: any;
+    methods?: any;
+    cssProps?: {[key: string]: string};
 }
