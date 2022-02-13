@@ -16,7 +16,8 @@
     "./camelToLisp.js": "./camelToLisp.js",
     "./html.js": "./html.js",
     ".": "./index.js",
-    "./index.js": "./index.js"
+    "./index.js": "./index.js",
+    "./doc.js": "./doc.js"
   },
   "types": "types.d.ts",
   "files": [
