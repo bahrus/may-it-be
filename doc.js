@@ -106,7 +106,6 @@ export class CustomElementManifestGenerator {
                     ctx = ctx[s];
                 }
                 const methodsDef = ctx;
-                console.log(methodsDef);
                 if (methodsDef === undefined)
                     return;
                 const methods = methodsDef.properties;
