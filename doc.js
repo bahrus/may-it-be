@@ -40,6 +40,8 @@ export class CustomElementManifestGenerator {
                 continue;
             const enm = tagName.enum;
             const name = this.getStringVal(enm);
+            if (name === '')
+                continue;
             const declarations = [];
             const module = {
                 kind: 'javascript-module',
@@ -52,10 +54,40 @@ export class CustomElementManifestGenerator {
     }
     generateDeclarations(name, tagName, properties, declarations) {
         const { props, methods } = properties;
+        const { $ref } = props;
+        const members = [];
+        if ($ref !== undefined) {
+            const split = $ref.split('/');
+            let ctx = this.#wcInfo;
+            let first = true;
+            for (const s of split) {
+                if (first) {
+                    first = false;
+                    continue;
+                }
+                ctx = ctx[s];
+            }
+            const propsDef = ctx;
+            if (propsDef === undefined)
+                return;
+            const props = propsDef.properties;
+            if (props === undefined)
+                return;
+            for (const prop in props) {
+                const { type, description } = props[prop];
+                const member = {
+                    kind: 'field',
+                    name: prop,
+                    description,
+                };
+                members.push(member);
+            }
+        }
         const newDeclaration = {
             tagName,
             name,
             customElement: true,
+            members,
         };
         declarations.push(newDeclaration);
     }

@@ -11,4 +11,5 @@ export interface SchemaProperty{
     $ref?: string;
     type?: 'string' | 'number' | 'boolean' | 'object' | 'array' | 'null' | 'any';
     enum?: string[];
+    description?: string;
 }
