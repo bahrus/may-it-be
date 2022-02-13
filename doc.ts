@@ -1,9 +1,10 @@
 import {SchemaFile, SchemaDefinition, SchemaProperty} from './schemaTypes';
 import {
     Package, Module, CustomElementDeclaration, CustomElement, JavaScriptModule, 
-    Declaration, ClassMember, PropertyLike
+    Declaration, ClassMember, PropertyLike, Attribute
 } 
-    from 'node_modules/custom-elements-manifest/schema';
+    from 'node_modules/custom-elements-manifest/schema.js';
+import {camelToLisp} from './camelToLisp.js';
 
 export class CustomElementManifestGenerator{
     #wcInfo: SchemaFile;
@@ -59,8 +60,21 @@ export class CustomElementManifestGenerator{
     }
 
     generateDeclarations(name: string, tagName: string, properties: {[key: string]: SchemaProperty}, declarations: CustomElement[]){
-        const {props, methods} = properties;
+        const {props, methods, nonAttribProps} = properties;
         const members: ClassMember[] = [];
+        const attributes: Attribute[] = [];
+        const attribExclusions: string[] = [];
+        if(nonAttribProps !== undefined){
+            const {items} = nonAttribProps;
+            if(items !== undefined){
+                for(const item of items){
+                    const enm = item.enum;
+                    if(enm !== undefined){
+                        attribExclusions.concat(enm);
+                    }
+                }
+            }
+        }
         if(props !== undefined){
             //props
             const {$ref} = props;
@@ -88,6 +102,13 @@ export class CustomElementManifestGenerator{
                             description,
                         };
                         members.push(member);
+                        if(!attribExclusions.includes(prop)){
+                            const attrib: Attribute = {
+                                name: camelToLisp(prop),
+                                description,
+                            };
+                            attributes.push(attrib);
+                        }
                     }
                 }
             }
@@ -128,6 +149,7 @@ export class CustomElementManifestGenerator{
             name,
             customElement: true,
             members,
+            attributes,
         };
         declarations.push(newDeclaration);
     }

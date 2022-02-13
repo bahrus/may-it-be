@@ -1,3 +1,4 @@
+import { camelToLisp } from './camelToLisp.js';
 export class CustomElementManifestGenerator {
     schema;
     encodeAndWrite;
@@ -58,8 +59,21 @@ export class CustomElementManifestGenerator {
         }
     }
     generateDeclarations(name, tagName, properties, declarations) {
-        const { props, methods } = properties;
+        const { props, methods, nonAttribProps } = properties;
         const members = [];
+        const attributes = [];
+        const attribExclusions = [];
+        if (nonAttribProps !== undefined) {
+            const { items } = nonAttribProps;
+            if (items !== undefined) {
+                for (const item of items) {
+                    const enm = item.enum;
+                    if (enm !== undefined) {
+                        attribExclusions.concat(enm);
+                    }
+                }
+            }
+        }
         if (props !== undefined) {
             //props
             const { $ref } = props;
@@ -87,6 +101,13 @@ export class CustomElementManifestGenerator {
                             description,
                         };
                         members.push(member);
+                        if (!attribExclusions.includes(prop)) {
+                            const attrib = {
+                                name: camelToLisp(prop),
+                                description,
+                            };
+                            attributes.push(attrib);
+                        }
                     }
                 }
             }
@@ -127,6 +148,7 @@ export class CustomElementManifestGenerator {
             name,
             customElement: true,
             members,
+            attributes,
         };
         declarations.push(newDeclaration);
     }

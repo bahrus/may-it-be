@@ -46,6 +46,12 @@ const test = `{
                     "type": "object"
                 },
                 "methods": {},
+                "nonAttribProps": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
                 "props": {},
                 "tagName": {
                     "type": "string"
@@ -55,6 +61,23 @@ const test = `{
         },
         "TimeTickerActions": {
             "description": "time-ticker actions",
+            "properties": {
+                "onTicks": {
+                    "type": "object"
+                },
+                "rotateItems": {
+                    "description": "Set rotating items",
+                    "type": "object"
+                },
+                "start": {
+                    "description": "Starts the timer",
+                    "type": "object"
+                },
+                "stop": {
+                    "description": "Stop the timer",
+                    "type": "object"
+                }
+            },
             "type": "object"
         },
         "TimeTickerInfo": {
@@ -62,8 +85,27 @@ const test = `{
                 "methods": {
                     "$ref": "#/definitions/TimeTickerActions"
                 },
+                "nonAttribProps": {
+                    "items": [
+                        {
+                            "enum": [
+                                "value"
+                            ],
+                            "type": "string"
+                        }
+                    ],
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
+                },
                 "props": {
                     "$ref": "#/definitions/TimeTickerProps"
+                },
+                "src": {
+                    "enum": [
+                        "./time-ticker.js"
+                    ],
+                    "type": "string"
                 },
                 "tagName": {
                     "enum": [
@@ -87,11 +129,11 @@ const test = `{
                     "type": "number"
                 },
                 "enabled": {
-                    "description": "enabledTest",
+                    "description": "",
                     "type": "boolean"
                 },
                 "idx": {
-                    "description": "idxTest",
+                    "description": "",
                     "type": "number"
                 },
                 "items": {

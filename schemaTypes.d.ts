@@ -12,4 +12,9 @@ export interface SchemaProperty{
     type?: 'string' | 'number' | 'boolean' | 'object' | 'array' | 'null' | 'any';
     enum?: string[];
     description?: string;
+    items?: SchemaItem[];
+}
+
+export interface SchemaItem{
+    enum?: string[];
 }
