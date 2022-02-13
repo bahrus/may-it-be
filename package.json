@@ -47,8 +47,7 @@
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
-    "custom-elements-manifest": "1.0.0",
-    "@types/json-schema": "7.0.9"
+    "custom-elements-manifest": "1.0.0"
   },
   "repository": {
     "type": "git",

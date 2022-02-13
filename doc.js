@@ -18,6 +18,14 @@ export class CustomElementManifestGenerator {
         this.generateModules(modules);
         this.encodeAndWrite(JSON.stringify(pkg, null, 2));
     }
+    getStringVal(enm) {
+        if (enm === undefined)
+            return '';
+        if (enm.length === 0)
+            return '';
+        const firstE = enm[0];
+        return firstE;
+    }
     generateModules(modules) {
         const { definitions } = this.#wcInfo;
         if (definitions === undefined)
@@ -30,16 +38,25 @@ export class CustomElementManifestGenerator {
             const { tagName } = properties;
             if (tagName === undefined)
                 continue;
-            const { type } = tagName;
-            const e = tagName.enum;
-            if (e === undefined || type !== 'string' || e.length === 0)
-                continue;
-            const firstE = e[0];
+            const enm = tagName.enum;
+            const name = this.getStringVal(enm);
+            const declarations = [];
             const module = {
-                name: firstE,
-                kind: 'class',
+                kind: 'javascript-module',
+                path: 'tbd',
+                declarations: declarations,
             };
+            this.generateDeclarations(def, name, properties, declarations);
             modules.push(module);
         }
+    }
+    generateDeclarations(name, tagName, properties, declarations) {
+        const { props, methods } = properties;
+        const newDeclaration = {
+            tagName,
+            name,
+            customElement: true,
+        };
+        declarations.push(newDeclaration);
     }
 }
