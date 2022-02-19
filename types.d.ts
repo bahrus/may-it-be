@@ -107,6 +107,7 @@ export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
     cssParts?: {[key: string]: string};
     props?: any;
     methods?: any;
-    nonAttribProps?: Partial<{[key in keyof TProps]: boolean}>;
+    //nonAttribProps?: Partial<{[key in keyof TProps]: boolean}>;
+    nonAttribProps?: (keyof TProps)[];
     cssProps?: {[key: string]: string};
 }
