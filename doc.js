@@ -1,5 +1,5 @@
 import { camelToLisp } from './camelToLisp.js';
-import * as TJS from "./node_modules/typescript-json-schema/dist/typescript-json-schema.js";
+import * as TJS from "typescript-json-schema";
 export class CustomElementManifestGenerator {
     path;
     type;
