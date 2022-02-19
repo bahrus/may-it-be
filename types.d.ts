@@ -93,21 +93,4 @@ export interface EventTriggerPresentation extends IPresentationElement{
     category: string
 }
 
-// export interface SimpleCustomElementDef {
-//     tagName: string;
-//     events?: Event[];
-//     props?: any[];
-//     slots?: Slot[];
-//     cssParts?: CssPart[];
-//     cssProperties?: CssCustomProperty[];
-// }
 
-export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
-    tagName: string;
-    cssParts?: {[key: string]: string};
-    props?: any;
-    methods?: any;
-    //nonAttribProps?: Partial<{[key in keyof TProps]: boolean}>;
-    nonAttribProps?: (keyof TProps)[];
-    cssProps?: {[key: string]: string};
-}
