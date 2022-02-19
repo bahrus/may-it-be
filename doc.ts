@@ -30,7 +30,7 @@ export class CustomElementManifestGenerator{
             compilerOptions,
             basePath
         );
-        this.#wcInfo = TJS.generateSchema(program, this.type, settings);
+        this.#wcInfo = TJS.generateSchema(program, this.type, settings) as SchemaFile;
         this.generatePackage();
     }
 
