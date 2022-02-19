@@ -13,6 +13,7 @@ export class CustomElementManifestGenerator{
     #wcInfo!: SchemaFile;
     constructor(public path: string, public type: string, public encodeAndWrite: (s: string) => void){
         // optionally pass argument to schema generator
+        console.log({path, type});
         const settings: TJS.PartialArgs = {
             required: true,
         };
@@ -31,6 +32,7 @@ export class CustomElementManifestGenerator{
             basePath
         );
         this.#wcInfo = TJS.generateSchema(program, this.type, settings);
+        console.log(JSON.stringify(this.#wcInfo, null, 2));
         // if(schema === undefined || !schema.trim().endsWith('}')){
         //     console.log("Incomplete JSON - likely due to build in progress");
         //     return;

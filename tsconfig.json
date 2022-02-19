@@ -11,7 +11,8 @@
 	"files":[
 		"index.ts",
 		"doc.ts",
-		"demo/schemaTest.ts"
+		"demo/schemaTest.ts",
+		"demo/trial.ts"
 	],
 	"exclude":[
 		"node_modules"
