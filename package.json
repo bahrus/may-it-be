@@ -44,7 +44,8 @@
     "be-reformable": "0.0.30",
     "be-switched": "0.0.60",
     "be-transactional": "0.0.8",
-    "be-transformative": "0.0.29"
+    "be-transformative": "0.0.29",
+    "typescript-json-schema": "0.53.0"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
