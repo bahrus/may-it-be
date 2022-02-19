@@ -1,11 +1,12 @@
 import { camelToLisp } from './camelToLisp.js';
-import { resolve } from "path";
 import * as TJS from "typescript-json-schema";
 export class CustomElementManifestGenerator {
+    path;
     type;
     encodeAndWrite;
     #wcInfo;
-    constructor(type, encodeAndWrite) {
+    constructor(path, type, encodeAndWrite) {
+        this.path = path;
         this.type = type;
         this.encodeAndWrite = encodeAndWrite;
         // optionally pass argument to schema generator
@@ -18,7 +19,7 @@ export class CustomElementManifestGenerator {
         };
         // optionally pass a base path
         const basePath = "./";
-        const program = TJS.getProgramFromFiles([resolve("types.d.ts")], compilerOptions, basePath);
+        const program = TJS.getProgramFromFiles([path], compilerOptions, basePath);
         this.#wcInfo = TJS.generateSchema(program, this.type, settings);
         // if(schema === undefined || !schema.trim().endsWith('}')){
         //     console.log("Incomplete JSON - likely due to build in progress");

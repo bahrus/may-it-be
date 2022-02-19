@@ -5,13 +5,13 @@ import {
 } 
     from 'node_modules/custom-elements-manifest/schema.js';
 import {camelToLisp} from './camelToLisp.js';
-import { resolve } from "path";
+
 
 import * as TJS from "typescript-json-schema";
 
 export class CustomElementManifestGenerator{
     #wcInfo!: SchemaFile;
-    constructor(public type: string, public encodeAndWrite: (s: string) => void){
+    constructor(public path: string, public type: string, public encodeAndWrite: (s: string) => void){
         // optionally pass argument to schema generator
         const settings: TJS.PartialArgs = {
             required: true,
@@ -26,7 +26,7 @@ export class CustomElementManifestGenerator{
         const basePath = "./";
 
         const program = TJS.getProgramFromFiles(
-            [resolve("types.d.ts")],
+            [path],
             compilerOptions,
             basePath
         );
