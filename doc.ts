@@ -7,8 +7,12 @@ import {
 import {camelToLisp} from './camelToLisp.js';
 
 export class CustomElementManifestGenerator{
-    #wcInfo: SchemaFile;
+    #wcInfo!: SchemaFile;
     constructor(public schema: string, public encodeAndWrite: (s: string) => void){
+        if(schema === undefined || !schema.trim().endsWith('}')){
+            console.log("Incomplete JSON - likely due to build in progress");
+            return;
+        }
         this.#wcInfo = JSON.parse(schema) as SchemaFile;
         this.generatePackage();
     }

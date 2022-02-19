@@ -6,6 +6,10 @@ export class CustomElementManifestGenerator {
     constructor(schema, encodeAndWrite) {
         this.schema = schema;
         this.encodeAndWrite = encodeAndWrite;
+        if (schema === undefined || !schema.trim().endsWith('}')) {
+            console.log("Incomplete JSON - likely due to build in progress");
+            return;
+        }
         this.#wcInfo = JSON.parse(schema);
         this.generatePackage();
     }
