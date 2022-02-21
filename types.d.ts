@@ -16,6 +16,7 @@ import { BeLookingUpVirtualProps } from 'be-looking-up/types';
 import { BeReformableVirtualProps } from 'be-reformable/types';
 import { BeImportingVirtualProps } from 'be-importing/types';
 import { BeBasedVirtualProps } from 'be-based/types';
+import { BeRepeatedVirtualProps } from 'be-repeated/types';
 
 export type ssn = string | symbol | number;
 
@@ -38,6 +39,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any> extends MayItBe
     beNoticed?: INotifyMap<Self, Props, Actions>,
     beObservant?: IObserveMap<Self, Props, Actions>,
     beReformable?: BeReformableVirtualProps & Partial<HTMLFormElement>,
+    beRepeated?: BeRepeatedVirtualProps,
     beSwitched?: BeSwitchedVirtualProps,
     beTransactional?: any,
     beTransformative?: any,
