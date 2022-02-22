@@ -160,7 +160,7 @@ const test = `{
     }
 }`;
 
-const docGen = new CustomElementManifestGenerator(test, console.log);
+//const docGen = new CustomElementManifestGenerator(test, console.log);
 
 
 

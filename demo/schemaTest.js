@@ -1,4 +1,3 @@
-import { CustomElementManifestGenerator } from '../doc.js';
 const test = `{
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
@@ -158,4 +157,5 @@ const test = `{
         }
     }
 }`;
-const docGen = new CustomElementManifestGenerator(test, console.log);
+export {};
+//const docGen = new CustomElementManifestGenerator(test, console.log);
