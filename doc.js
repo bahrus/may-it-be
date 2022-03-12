@@ -1,4 +1,5 @@
 import { camelToLisp } from './camelToLisp.js';
+//@ts-ignore
 import * as TJS from "typescript-json-schema";
 export class CustomElementManifestGenerator {
     path;
@@ -73,10 +74,11 @@ export class CustomElementManifestGenerator {
         }
     }
     generateDeclarations(name, tagName, properties, declarations) {
-        const { props, methods, nonAttribProps } = properties;
+        const { props, methods, nonAttribProps, cssParts } = properties;
         const members = [];
         const attributes = [];
         const attribExclusions = [];
+        const parts = [];
         if (nonAttribProps !== undefined) {
             const { items } = nonAttribProps;
             if (items !== undefined) {
@@ -157,12 +159,28 @@ export class CustomElementManifestGenerator {
                 }
             }
         }
+        if (cssParts !== undefined) {
+            //console.log('cssParts', cssParts);
+            const properties = cssParts.properties;
+            for (const propKey in properties) {
+                const prop = properties[propKey];
+                const enm = prop.enum;
+                const description = this.getStringVal(enm);
+                const cssPart = {
+                    name: camelToLisp(propKey),
+                    description
+                };
+                parts.push(cssPart);
+            }
+            //console.log('test', test);
+        }
         const newDeclaration = {
             tagName,
             name,
             customElement: true,
             members,
             attributes,
+            cssParts: parts,
         };
         declarations.push(newDeclaration);
     }

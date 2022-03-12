@@ -95,7 +95,9 @@ export abstract class TimeTickerInfo implements SimpleWCInfo<TimeTickerProps>{
     props: TimeTickerProps;
     methods: TimeTickerActions;
     nonAttribProps: ['value', 'controller'];
-    
+    cssParts: { 
+        partA: "description 1"
+    };
 }
 
 export type Package = [TimeTickerInfo];
