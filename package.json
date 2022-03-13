@@ -36,6 +36,7 @@
     "be-ferried": "0.0.35",
     "be-importing": "0.0.22",
     "be-intersectional": "0.0.35",
+    "be-lazy": "0.0.2",
     "be-loaded": "0.0.51",
     "be-looking-up": "0.0.11",
     "be-metamorphic": "0.0.20",
