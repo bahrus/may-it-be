@@ -30,6 +30,7 @@
   "dependencies": {
     "be-active": "0.0.27",
     "be-based": "0.0.13",
+    "be-channeling": "0.0.7",
     "be-consensual": "0.0.17",
     "be-definitive": "0.0.42",
     "be-exportable": "0.0.16",

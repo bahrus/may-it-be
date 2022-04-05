@@ -17,6 +17,7 @@ import { BeReformableVirtualProps } from 'be-reformable/types';
 import { BeImportingVirtualProps } from 'be-importing/types';
 import { BeBasedVirtualProps } from 'be-based/types';
 import { BeRepeatedVirtualProps } from 'be-repeated/types';
+import { BeChannelingVirtualProps } from 'be-channeling/types';
 
 export type ssn = string | symbol | number;
 
@@ -27,6 +28,7 @@ export interface MayItBeTransformable<Self = any, Props = any, Actions = any> {
 
 export interface MayItBe<Self = any, Props = any, Actions = any> extends MayItBeTransformable<Self, Props, Actions> {
     beActive?: BeActiveVirtualProps,
+    beChanneling?: BeChannelingVirtualProps,
     beConsensual?: BeConsensualVirtualProps,
     beConsensualMember?: boolean,
     beDefinitive?: BeDefinitiveVirtualProps<Props, Actions>,
