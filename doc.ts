@@ -1,7 +1,7 @@
 import {SchemaFile, SchemaDefinition, SchemaProperty} from './schemaTypes';
 import {
     Package, Module, CustomElementDeclaration, CustomElement, JavaScriptModule, 
-    Declaration, ClassMember, PropertyLike, Attribute, CssPart, Slot
+    Declaration, ClassMember, PropertyLike, Attribute, CssPart, Slot, Event
 } 
     from 'node_modules/custom-elements-manifest/schema.js';
 import {camelToLisp} from './camelToLisp.js';
@@ -81,12 +81,13 @@ export class CustomElementManifestGenerator{
     }
 
     generateDeclarations(name: string, tagName: string, properties: {[key: string]: SchemaProperty}, declarations: CustomElement[]){
-        const {props, methods, nonAttribProps, cssParts, slots} = properties;
+        const {props, methods, nonAttribProps, cssParts, slots, events} = properties;
         const members: ClassMember[] = [];
         const attributes: Attribute[] = [];
         const attribExclusions: string[] = [];
         const parts: CssPart[] = [];
         const slotArr: Slot[] = [];
+        const eventArr: Event[] = [];
         if(nonAttribProps !== undefined){
             const {items} = nonAttribProps;
             if(items !== undefined){
@@ -195,6 +196,19 @@ export class CustomElementManifestGenerator{
                 slotArr.push(slot);
             }
         }
+        if(events !== undefined){
+            const properties = (<any>events).properties;
+            for(const propKey in properties){
+                const prop = properties[propKey];
+                const enm = prop.enum;
+                const description = this.getStringVal(enm);
+                const event = {
+                    name: camelToLisp(propKey),
+                    description,
+                } as Event;
+                eventArr.push(event);
+            }
+        }
         
         const newDeclaration: CustomElement = {
             tagName,
@@ -204,6 +218,7 @@ export class CustomElementManifestGenerator{
             attributes,
             cssParts: parts,
             slots: slotArr,
+            events: eventArr,
         };
         declarations.push(newDeclaration);
     }
