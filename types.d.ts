@@ -39,7 +39,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any> extends MayItBe
     beLoaded?: BeLoadedVirtualProps,
     beLookingUp?: BeLookingUpVirtualProps,
     beNoticed?: INotifyMap<Self, Props, Actions>,
-    beObservant?: IObserveMap<Self, Props, Actions>,
+    beObservant?: IObserveMap<Self, Props, Actions> | IObserveMap<Self, Props, Actions>[],
     beReformable?: BeReformableVirtualProps & Partial<HTMLFormElement>,
     beRepeated?: BeRepeatedVirtualProps,
     beSwitched?: BeSwitchedVirtualProps,
