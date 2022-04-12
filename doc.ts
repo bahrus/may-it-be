@@ -1,7 +1,7 @@
 import {SchemaFile, SchemaDefinition, SchemaProperty} from './schemaTypes';
 import {
     Package, Module, CustomElementDeclaration, CustomElement, JavaScriptModule, 
-    Declaration, ClassMember, PropertyLike, Attribute, CssPart
+    Declaration, ClassMember, PropertyLike, Attribute, CssPart, Slot
 } 
     from 'node_modules/custom-elements-manifest/schema.js';
 import {camelToLisp} from './camelToLisp.js';
@@ -81,11 +81,12 @@ export class CustomElementManifestGenerator{
     }
 
     generateDeclarations(name: string, tagName: string, properties: {[key: string]: SchemaProperty}, declarations: CustomElement[]){
-        const {props, methods, nonAttribProps, cssParts} = properties;
+        const {props, methods, nonAttribProps, cssParts, slots} = properties;
         const members: ClassMember[] = [];
         const attributes: Attribute[] = [];
         const attribExclusions: string[] = [];
         const parts: CssPart[] = [];
+        const slotArr: Slot[] = [];
         if(nonAttribProps !== undefined){
             const {items} = nonAttribProps;
             if(items !== undefined){
@@ -179,7 +180,20 @@ export class CustomElementManifestGenerator{
                 }
                 parts.push(cssPart);
             }
-            //console.log('test', test);
+        }
+
+        if(slots !== undefined){
+            const properties = (<any>slots).properties;
+            for(const propKey in properties){
+                const prop = properties[propKey];
+                const enm = prop.enum;
+                const description = this.getStringVal(enm);
+                const slot: Slot = {
+                    name: camelToLisp(propKey),
+                    description
+                };
+                slotArr.push(slot);
+            }
         }
         
         const newDeclaration: CustomElement = {
@@ -189,6 +203,7 @@ export class CustomElementManifestGenerator{
             members,
             attributes,
             cssParts: parts,
+            slots: slotArr,
         };
         declarations.push(newDeclaration);
     }

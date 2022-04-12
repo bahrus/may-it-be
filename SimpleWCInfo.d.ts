@@ -5,4 +5,5 @@ export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
     methods?: any;
     nonAttribProps?: (keyof TProps)[];
     cssProps?: {[key: string]: string};
+    slots?: {[key: string]: string};
 }

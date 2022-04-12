@@ -74,11 +74,12 @@ export class CustomElementManifestGenerator {
         }
     }
     generateDeclarations(name, tagName, properties, declarations) {
-        const { props, methods, nonAttribProps, cssParts } = properties;
+        const { props, methods, nonAttribProps, cssParts, slots } = properties;
         const members = [];
         const attributes = [];
         const attribExclusions = [];
         const parts = [];
+        const slotArr = [];
         if (nonAttribProps !== undefined) {
             const { items } = nonAttribProps;
             if (items !== undefined) {
@@ -172,7 +173,19 @@ export class CustomElementManifestGenerator {
                 };
                 parts.push(cssPart);
             }
-            //console.log('test', test);
+        }
+        if (slots !== undefined) {
+            const properties = slots.properties;
+            for (const propKey in properties) {
+                const prop = properties[propKey];
+                const enm = prop.enum;
+                const description = this.getStringVal(enm);
+                const slot = {
+                    name: camelToLisp(propKey),
+                    description
+                };
+                slotArr.push(slot);
+            }
         }
         const newDeclaration = {
             tagName,
@@ -181,6 +194,7 @@ export class CustomElementManifestGenerator {
             members,
             attributes,
             cssParts: parts,
+            slots: slotArr,
         };
         declarations.push(newDeclaration);
     }
