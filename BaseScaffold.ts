@@ -73,7 +73,7 @@ ${Array.from(unclassifiedMembers).map(memberKey => this.renderMember(memberKey))
 </form>
 <template be-active>
     <script data-version=0.0.56 id=be-loaded/be-loaded.js data-when=be-importing ></script>
-    <script data-version=0.0.119 id=be-observant/be-observant.js data-when=be-loaded ></script>
+    <script data-version=0.0.121 id=be-observant/be-observant.js data-when=be-loaded ></script>
     <script data-version=0.0.62 id=be-noticed/be-noticed.js data-when=be-observant ></script>
 </template>
 <be-hive></be-hive>
