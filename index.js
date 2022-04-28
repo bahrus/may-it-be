@@ -43,7 +43,8 @@ import('be-active/be-active.js');
 ${dependencies.map(d => `import('${d}');`).join('\n')}
 if(!document.body){
     document.addEventListener('DOMContentLoaded', () => {
-    document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);
+        document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);
+    });
 }else{
     document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);
 }`;
