@@ -41,7 +41,12 @@ export function define({ innerHTML, encodeAndWrite, mode, dependencies, globalSt
                 const js = `import('be-definitive/be-definitive.js');
 import('be-active/be-active.js');
 ${dependencies.map(d => `import('${d}');`).join('\n')}
-document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);`;
+if(!document.body){
+    document.addEventListener('DOMContentLoaded', () => {
+    document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);
+}else{
+    document.body.insertAdjacentHTML('beforeend', \`${mainTemplate}\`);
+}`;
                 encodeAndWrite(js);
             }
             break;
