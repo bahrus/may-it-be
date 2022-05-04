@@ -72,7 +72,7 @@ encodeAndWrite(js);
     <template shadowroot="open">
         <template be-active>
             <script data-version=0.0.26 id="be-importing/be-importing.js"></script>
-            <script data-version=0.0.54 id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
+            <script data-version=0.0.55 id="be-definitive/be-definitive.js" data-when=be-importing></script>${beExportable}
             ${dependencies.map(d => html`<script data-when=be-importing id="${d}"></script>`).join('\n')}
             ${globalStylePaths.map(p => html`<link rel="stylesheet" href="${p}">`).join('\n')}
         </template>
