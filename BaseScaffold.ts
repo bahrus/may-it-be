@@ -72,8 +72,8 @@ ${Object.keys(categories).map(category => {
 ${Array.from(unclassifiedMembers).map(memberKey => this.renderMember(memberKey))}
 </form>
 <template be-active>
-    <script data-version=0.0.58 id=be-loaded/be-loaded.js data-when=be-importing ></script>
-    <script data-version=0.0.125 id=be-observant/be-observant.js data-when=be-loaded ></script>
+    <script data-version=0.0.67 id=be-loaded/be-loaded.js data-when=be-importing ></script>
+    <script data-version=0.0.128 id=be-observant/be-observant.js data-when=be-loaded ></script>
     <script data-version=0.0.65 id=be-noticed/be-noticed.js data-when=be-observant ></script>
 </template>
 <be-hive></be-hive>
@@ -92,8 +92,7 @@ ${stylePaths.map(path => html`
 <style ${{
     beLoaded: {
         removeStyle: true,
-        preloadRef: path,
-        fallback: path,
+        path,
     }
 } as mib}>
     form{

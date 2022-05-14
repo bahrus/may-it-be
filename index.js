@@ -81,7 +81,7 @@ ${scriptRef}
 <script type=module>
     if(customElements.get('be-active') === undefined){
         import('be-active/be-active.js').catch(err => {
-            import('https://esm.run/be-active@0.0.32/be-active.js');
+            import('https://esm.run/be-active@0.0.33/be-active.js');
         });
     }
 </script>
