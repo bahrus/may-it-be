@@ -13,7 +13,7 @@ import { BaseScaffoldGenerator } from './BaseScaffold';
 import { BeExportableVirtualProps} from 'be-exportable/types';
 import { BeConsensualVirtualProps } from 'be-consensual/types';
 import { BeLookingUpVirtualProps } from 'be-looking-up/types';
-import { BeReformableVirtualProps } from 'be-reformable/types';
+import { BeReformableEndUserProps } from 'be-reformable/types';
 import { BeImportingVirtualProps } from 'be-importing/types';
 import { BeBasedVirtualProps } from 'be-based/types';
 import { BeRepeatedVirtualProps } from 'be-repeated/types';
@@ -40,7 +40,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any> extends MayItBe
     beLookingUp?: BeLookingUpVirtualProps,
     beNoticed?: INotifyMap<Self, Props, Actions>,
     beObservant?: IObserveMap<Self, Props, Actions> | IObserveMap<Self, Props, Actions>[],
-    beReformable?: BeReformableVirtualProps & Partial<HTMLFormElement>,
+    beReformable?: BeReformableEndUserProps & Partial<HTMLFormElement>,
     beRepeated?: BeRepeatedVirtualProps,
     beSwitched?: BeSwitchedVirtualProps,
     beTransactional?: any,
