@@ -1,4 +1,4 @@
-import {BeDefinitiveVirtualProps, VisualHints, MayItBe as mib, ssn, PropPresentation, ActionPresentation, MemberPresentation} from './types';
+import { BeDefinitive, VisualHints, MayItBe as mib, ssn, PropPresentation, ActionPresentation, MemberPresentation} from './types';
 import { IObserveMap } from 'be-observant/types';
 import {html} from './html.js';
 import { camelToLisp } from './camelToLisp.js';
@@ -9,10 +9,10 @@ export {html};
 export {VisualHints, ssn};
 
 export class BaseScaffoldGenerator{
-    static generateFrom(def: BeDefinitiveVirtualProps, visualHints: VisualHints = {}){
+    static generateFrom(def: BeDefinitive, visualHints: VisualHints = {}){
         return new BaseScaffoldGenerator(def, visualHints);
     }
-    constructor(public def: BeDefinitiveVirtualProps, public visualHints: VisualHints = {
+    constructor(public def: BeDefinitive, public visualHints: VisualHints = {
         stylePaths: []
     }){}
 
