@@ -28,7 +28,8 @@
     "package-check": "package-check"
   },
   "dependencies": {
-    "typescript-json-schema": "0.54.0"
+    "typescript-json-schema": "0.54.0",
+    "be-decorated": "0.0.190"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
