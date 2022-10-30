@@ -2,7 +2,7 @@ import { EndUserProps as Active, EndUserProps} from './types/be-active';
 import { EndUserProps as Definitive } from './types/be-definitive';
 import { EndUserProps as Ferried} from './types/be-ferried';
 import { INotifyMap } from './types/be-noticed'; 
-import { EndUserProps as Observant } from './types/be-observant';
+import { EndUserProps as Observant, PropObserveMap } from './types/be-observant';
 import { EndUserProps as Switched } from './types/be-switched';
 import { EndUserProps as Loaded } from './types/be-loaded';
 import { BaseScaffoldGenerator } from './BaseScaffold';
@@ -36,7 +36,7 @@ export interface MayItBe<Self = any, Props = any, Actions = any> extends MayItBe
     beLoaded?: Loaded,
     beLookingUp?: LookingUp,
     beNoticed?: INotifyMap<Self, Props, Actions>,
-    beObservant?: Observant<Self, Props, Actions> | Observant<Self, Props, Actions>[],
+    beObservant?: PropObserveMap<Self, Props, Actions> | PropObserveMap<Self, Props, Actions>[],
     beReformable?: Reformable & Partial<HTMLFormElement>,
     beRepeated?: Repeated,
     beSwitched?: Switched,
