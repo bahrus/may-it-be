@@ -61,8 +61,8 @@ export class CustomElementManifestGenerator{
             if(properties === undefined) continue;
             const {tagName, src} = properties;
             if(tagName === undefined) continue;
-            const enm = tagName.enum;
-            const name = this.getStringVal(enm);
+            //const enm = tagName.enum;
+            const name = tagName.constant;
             let path = '';
             if(src !== undefined){
                 const srcEnm = src.enum;
