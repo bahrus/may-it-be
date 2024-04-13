@@ -24,16 +24,13 @@
     "*.*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "package-check": "package-check"
+    "update": "ncu -u && npm install"
   },
   "dependencies": {
-    "typescript-json-schema": "0.54.0",
-    "be-decorated": "0.0.190"
+    "typescript-json-schema": "0.63.0"
   },
   "devDependencies": {
-    "@skypack/package-check": "0.2.2",
-    "custom-elements-manifest": "1.0.0"
+    "custom-elements-manifest": "2.0.0"
   },
   "repository": {
     "type": "git",
