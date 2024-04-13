@@ -124,6 +124,7 @@ export class CustomElementManifestGenerator{
                             kind: 'field',
                             name: prop,
                             description,
+                        
                         };
                         members.push(member);
                         if(!attribExclusions.includes(prop)){

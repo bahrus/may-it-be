@@ -6,14 +6,14 @@
 		"sourceMap": false,
 		"experimentalDecorators": false,
 		"newLine": "LF",
-		"watch": true,
 		"strict": true,
 	},
 	"files":[
 		"index.ts",
 		"doc.ts",
 		"demo/schemaTest.ts",
-		"demo/trial.ts"
+		"demo/trial.ts",
+		"getTypesInfo.ts"
 	],
 	"exclude":[
 		"node_modules"
