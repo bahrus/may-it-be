@@ -3,7 +3,7 @@ import {camelToLisp} from './camelToLisp.js';
 import * as TJS from "typescript-json-schema";
 import { SchemaFile, SchemaProperty } from './schemaTypes.js';
 import {OConfig} from 'trans-render/froop/types';
-import {Package, CustomElement, CustomElementMixinDeclaration, PropertyLike, ClassMember} from './node_modules/custom-elements-manifest/schema.d.js';
+import {Package, CustomElement, CustomElementMixinDeclaration, PropertyLike, ClassMember, Attribute} from './node_modules/custom-elements-manifest/schema.d.js';
 
 export function getTypesInfo(path: string, config: OConfig){
     // optionally pass argument to schema generator
@@ -26,6 +26,9 @@ export function getTypesInfo(path: string, config: OConfig){
     );
 
     const schema = TJS.generateSchema(program, 'EndUserProps', settings) as SchemaFile;
+    const propMembers: Array<PropertyLike & ClassMember> = [];
+    const attributes: Array<Attribute> = [];
+    generateProps(schema, config, propMembers, attributes);
     const name = config.name!;
     const p: Package = {
         schemaVersion: '1.0.0',
@@ -38,7 +41,8 @@ export function getTypesInfo(path: string, config: OConfig){
                     tagName: name,
                     name: name,
                     kind: 'class',
-                    members: [...generateProps(schema, config)]
+                    members: [...propMembers],
+                    attributes
                 } //as CustomElement
             ]
         }]
@@ -49,8 +53,13 @@ export function getTypesInfo(path: string, config: OConfig){
     }
 }
 
-function generateProps(schemaFile: SchemaFile, config: OConfig) : Array<PropertyLike & ClassMember>{
-    const propMembers: Array<PropertyLike & ClassMember> = [];
+function generateProps(
+    schemaFile: SchemaFile, 
+    config: OConfig,
+    propMembers: Array<PropertyLike & ClassMember>,
+    attrs: Array<Attribute>
+){
+    
     const {propDefaults, propInfo} = config;
     const mergedPropInfo = {...propInfo};
     const properties = (<any>schemaFile).properties as {[key: string]: SchemaProperty}
@@ -86,6 +95,11 @@ function generateProps(schemaFile: SchemaFile, config: OConfig) : Array<Property
             description: typeDefProp ? typeDefProp.description : ''
         };
         propMembers.push(propMember);
+        if(propInfo?.parse && propInfo.attrName){
+            attrs.push({
+                name: propInfo.attrName,
+                description: typeDefProp ? typeDefProp.description : ''
+            });
+        }
     }
-    return propMembers;
 }

@@ -13,6 +13,9 @@ export function getTypesInfo(path, config) {
     const basePath = "./";
     const program = TJS.getProgramFromFiles([path], compilerOptions, basePath);
     const schema = TJS.generateSchema(program, 'EndUserProps', settings);
+    const propMembers = [];
+    const attributes = [];
+    generateProps(schema, config, propMembers, attributes);
     const name = config.name;
     const p = {
         schemaVersion: '1.0.0',
@@ -25,7 +28,8 @@ export function getTypesInfo(path, config) {
                         tagName: name,
                         name: name,
                         kind: 'class',
-                        members: [...generateProps(schema, config)]
+                        members: [...propMembers],
+                        attributes
                     } //as CustomElement
                 ]
             }]
@@ -35,8 +39,7 @@ export function getTypesInfo(path, config) {
         package: p
     };
 }
-function generateProps(schemaFile, config) {
-    const propMembers = [];
+function generateProps(schemaFile, config, propMembers, attrs) {
     const { propDefaults, propInfo } = config;
     const mergedPropInfo = { ...propInfo };
     const properties = schemaFile.properties;
@@ -72,6 +75,11 @@ function generateProps(schemaFile, config) {
             description: typeDefProp ? typeDefProp.description : ''
         };
         propMembers.push(propMember);
+        if (propInfo?.parse && propInfo.attrName) {
+            attrs.push({
+                name: propInfo.attrName,
+                description: typeDefProp ? typeDefProp.description : ''
+            });
+        }
     }
-    return propMembers;
 }
