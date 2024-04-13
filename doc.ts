@@ -3,7 +3,7 @@ import {
     Package, Module, CustomElementDeclaration, CustomElement, JavaScriptModule, 
     Declaration, ClassMember, PropertyLike, Attribute, CssPart, Slot, Event
 } 
-    from 'node_modules/custom-elements-manifest/schema.js';
+    from './node_modules/custom-elements-manifest/schema.d.js';
 import {camelToLisp} from './camelToLisp.js';
 
 //@ts-ignore
