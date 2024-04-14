@@ -13,7 +13,7 @@
 		"doc.ts",
 		"demo/schemaTest.ts",
 		"demo/trial.ts",
-		"getTypesInfo.ts"
+		"analyze.ts"
 	],
 	"exclude":[
 		"node_modules"

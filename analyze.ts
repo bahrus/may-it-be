@@ -3,9 +3,9 @@ import {camelToLisp} from './camelToLisp.js';
 import * as TJS from "typescript-json-schema";
 import { SchemaFile, SchemaProperty } from './schemaTypes.js';
 import {OConfig} from 'trans-render/froop/types';
-import {Package, CustomElement, CustomElementMixinDeclaration, PropertyLike, ClassMember, Attribute} from './node_modules/custom-elements-manifest/schema.d.js';
+import {Package, CustomElement, CustomElementMixinDeclaration, PropertyLike, ClassMember, Attribute} from 'custom-elements-manifest';
 
-export function getTypesInfo(path: string, config: OConfig){
+export function analyze(path: string, config: OConfig){
     // optionally pass argument to schema generator
     const settings: TJS.PartialArgs = {
         required: true,

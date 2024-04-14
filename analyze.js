@@ -1,6 +1,6 @@
 import { camelToLisp } from './camelToLisp.js';
 import * as TJS from "typescript-json-schema";
-export function getTypesInfo(path, config) {
+export function analyze(path, config) {
     // optionally pass argument to schema generator
     const settings = {
         required: true,
