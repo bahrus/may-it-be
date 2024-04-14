@@ -80,7 +80,9 @@ function generateProps(schemaFile, config, propMembers, attrs) {
             propMember.description += String.raw `
             Possible values:
 
-            ${typeDefProp.enum.map(x => String.raw `${x}\n\r`).join('')}
+            ${typeDefProp.enum.map(x => String.raw `
+            ${x}
+            `).join('')}
 
             `;
         }
