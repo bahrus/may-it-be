@@ -97,10 +97,10 @@ function generateProps(
         };
         if(typeDefProp.enum){
             propMember.description += String.raw `
-            <div>Possible values</div>
-            <ul>
-                ${typeDefProp.enum.map(x => String.raw `<li>${x}</li>`).join('')}
-            </ul>
+            Possible values:
+
+            ${typeDefProp.enum.map(x => String.raw `${x}\n\r`).join('')}
+
             `
         }
         propMembers.push(propMember);
