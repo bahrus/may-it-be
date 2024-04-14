@@ -76,6 +76,14 @@ function generateProps(schemaFile, config, propMembers, attrs) {
             default: def,
             description: typeDefProp ? typeDefProp.description : ''
         };
+        if (typeDefProp.enum) {
+            propMember.description += String.raw `
+            <div>Possible values</div>
+            <ul>
+                ${typeDefProp.enum.map(x => String.raw `<li>${x}</li>`).join('')}
+            </ul>
+            `;
+        }
         propMembers.push(propMember);
         if (propInfo?.parse && propInfo.attrName) {
             attrs.push({
