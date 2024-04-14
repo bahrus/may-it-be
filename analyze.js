@@ -68,6 +68,8 @@ function generateProps(schemaFile, config, propMembers, attrs) {
         const propInfo = mergedPropInfo[key];
         const { def } = propInfo;
         const typeDefProp = properties[key];
+        if (typeDefProp === undefined)
+            continue;
         const propMember = {
             kind: 'field',
             name: key,

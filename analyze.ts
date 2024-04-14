@@ -88,6 +88,7 @@ function generateProps(
         const propInfo = mergedPropInfo[key];
         const {def} = propInfo!;
         const typeDefProp = properties[key];
+        if(typeDefProp === undefined) continue;
         const propMember : PropertyLike & ClassMember = {
             kind: 'field',
             name: key,
