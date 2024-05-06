@@ -12,7 +12,7 @@ export function analyze(path, config) {
     // optionally pass a base path
     const basePath = "./";
     const program = TJS.getProgramFromFiles([path], compilerOptions, basePath);
-    const schema = TJS.generateSchema(program, 'EndUserProps', settings);
+    const schema = TJS.generateSchema(program, 'AllProps', settings);
     const propMembers = [];
     const attributes = [];
     generateProps(schema, config, propMembers, attributes);

@@ -25,7 +25,7 @@ export function analyze(path: string, config: OConfig){
         basePath
     );
 
-    const schema = TJS.generateSchema(program, 'EndUserProps', settings) as SchemaFile;
+    const schema = TJS.generateSchema(program, 'AllProps', settings) as SchemaFile;
     const propMembers: Array<PropertyLike & ClassMember> = [];
     const attributes: Array<Attribute> = [];
     generateProps(schema, config, propMembers, attributes);
