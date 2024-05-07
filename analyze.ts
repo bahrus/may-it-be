@@ -86,14 +86,15 @@ function generateProps(
     }
     for(const key in mergedPropInfo){
         const propInfo = mergedPropInfo[key];
-        const {def} = propInfo!;
+        const {def, ro} = propInfo!;
         const typeDefProp = properties[key];
         if(typeDefProp === undefined) continue;
         const propMember : PropertyLike & ClassMember = {
             kind: 'field',
             name: key,
             default: def,
-            description: typeDefProp ? typeDefProp.description : ''
+            description: typeDefProp ? typeDefProp.description : '',
+            readonly: ro,
         };
         if(typeDefProp.enum){
             propMember.description += String.raw `

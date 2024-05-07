@@ -29,10 +29,10 @@
   },
   "dependencies": {
     "typescript-json-schema": "0.63.0",
-    "trans-render": "0.0.760"
+    "trans-render": "0.0.764"
   },
   "devDependencies": {
-    "custom-elements-manifest": "2.0.0"
+    "custom-elements-manifest": "2.1.0"
   },
   "repository": {
     "type": "git",

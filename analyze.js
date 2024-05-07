@@ -66,7 +66,7 @@ function generateProps(schemaFile, config, propMembers, attrs) {
     }
     for (const key in mergedPropInfo) {
         const propInfo = mergedPropInfo[key];
-        const { def } = propInfo;
+        const { def, ro } = propInfo;
         const typeDefProp = properties[key];
         if (typeDefProp === undefined)
             continue;
@@ -74,7 +74,8 @@ function generateProps(schemaFile, config, propMembers, attrs) {
             kind: 'field',
             name: key,
             default: def,
-            description: typeDefProp ? typeDefProp.description : ''
+            description: typeDefProp ? typeDefProp.description : '',
+            readonly: ro,
         };
         if (typeDefProp.enum) {
             propMember.description += String.raw `
