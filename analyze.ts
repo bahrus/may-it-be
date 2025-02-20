@@ -2,7 +2,7 @@ import {camelToLisp} from './camelToLisp.js';
 
 import * as TJS from "typescript-json-schema";
 import { SchemaFile, SchemaProperty } from './schemaTypes.js';
-import {OConfig} from 'trans-render/froop/types';
+import {OConfig} from './ts-refs/trans-render/froop/types';
 import {Package, CustomElement, CustomElementMixinDeclaration, PropertyLike, ClassMember, Attribute} from 'custom-elements-manifest';
 
 export function analyze(path: string, config: OConfig){
